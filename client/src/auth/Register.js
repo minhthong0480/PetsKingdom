@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import RegisterForm from "../components/RegisterForm";
-import axios from 'axios '
+import axios from 'axios'
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -11,7 +11,16 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     //console.table({ name, email, password });
-    await axios.post(`http://localhost:8000/api/register`)
+   try {
+    const res = await axios.post(`http://localhost:4000/api/user/register`, {
+      name: name,
+      email: email,
+      password: password,
+    })
+    console.log ('REGISTER USER ===> ', res)
+   } catch (error) {
+    console.log(error)
+   }
   };
 
   return (
@@ -35,6 +44,7 @@ const Register = () => {
           </div>
         </div>
       </div>
+      
     </>
   );
 };
