@@ -10,24 +10,24 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     //console.table({ name, email, password });
     try {
-      const res = await axios.post(`http://localhost:4000/api/user/register`, {
+      const res = await axios.post(`${process.env.REACT_APP_API}/register`, {
         name: name,
         email: email,
         password: password,
       });
       console.log("REGISTER USER ===> ", res);
       //create popup for successful login
-      toast.success("Register successfully. Back to Login page in 5 second", {hideAfter: 4});
+      toast.success("Register successfully. Back to Login page in 5 second", {autoClose:3000});
       //redirect to login page in 3s
       setTimeout(() => {
-        navigate('/login')
-      }, 5000)
+        navigate("/login");
+      }, 4000);
     } catch (error) {
       console.log(error);
       if (error.response.status === 400) {
@@ -36,6 +36,8 @@ const Register = () => {
       }
     }
   };
+
+  //console.log(process.env.REACT_APP_API)
 
   return (
     <>
