@@ -21,9 +21,9 @@ mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true }, () =>
 app.use(express.json());
 app.use(cors())
  
-// app.get('/products/:id', function (req, res, next) {
-//   res.json({msg: 'This is CORS-enabled for all origins!'})
-// })
+app.get('/products/:id', function (req, res, next) {
+  res.json({msg: 'This is CORS-enabled for all origins!'})
+})
 
 // Router middleware
 app.use("/api/user", authRoute);
