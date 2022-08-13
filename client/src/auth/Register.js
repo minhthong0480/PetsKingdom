@@ -4,6 +4,7 @@ import RegisterForm from "../components/RegisterForm";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { register } from "../action/auth";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -16,14 +17,16 @@ const Register = () => {
     e.preventDefault();
     //console.table({ name, email, password });
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API}/register`, {
+      const res = await register({
         name: name,
         email: email,
         password: password,
       });
       console.log("REGISTER USER ===> ", res);
       //create popup for successful login
-      toast.success("Register successfully. Back to Login page in 5 second", {autoClose:3000});
+      toast.success("Register successfully. Back to Login page in 5 second", {
+        autoClose: 3000,
+      });
       //redirect to login page in 3s
       setTimeout(() => {
         navigate("/login");
