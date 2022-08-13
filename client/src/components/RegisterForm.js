@@ -1,3 +1,6 @@
+
+import {Link} from 'react-router-dom'
+
 const RegisterForm = ({
   handleSubmit,
   name,
@@ -40,8 +43,8 @@ const RegisterForm = ({
         onChange={(e) => setPassword(e.target.value)}
       />
     </div>
-
     <button className="btn btn-primary">Submit</button>
+    {/* <Link to={'/login'}><button className="btn btn-primary">Submit</button></Link> */}
   </form>
 );
 

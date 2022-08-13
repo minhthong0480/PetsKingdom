@@ -15,11 +15,15 @@ const userSchema = new mongoose.Schema({
         required: true,
         min: 6
     },
+    isStaff: {
+        type: Boolean,
+        default: false
+    }
     
     // date: {
     //     type: Date,
     //     default: Date.now
     // }
-})
+},{timeStamps: true})
 
 module.exports = mongoose.model('User', userSchema)

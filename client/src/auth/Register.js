@@ -1,7 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import RegisterForm from "../components/RegisterForm";
-import axios from 'axios'
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -11,16 +12,20 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     //console.table({ name, email, password });
-   try {
-    const res = await axios.post(`http://localhost:4000/api/user/register`, {
-      name: name,
-      email: email,
-      password: password,
-    })
-    console.log ('REGISTER USER ===> ', res)
-   } catch (error) {
-    console.log(error)
-   }
+    try {
+      const res = await axios.post(`http://localhost:4000/api/user/register`, {
+        name: name,
+        email: email,
+        password: password,
+      });
+      console.log("REGISTER USER ===> ", res);
+      toast.success("Register success. Please Login");
+    } catch (error) {
+      console.log(error);
+      if (error.response.status === 400) {
+        toast.error(error.response.data);
+      }
+    }
   };
 
   return (
@@ -44,7 +49,6 @@ const Register = () => {
           </div>
         </div>
       </div>
-      
     </>
   );
 };

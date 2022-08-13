@@ -3,15 +3,10 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 
 //import redux
-import {createStore, combineReducers} from 'redux'
 import {Provider} from 'react-redux'
-import {composeWithDevTools} from 'redux-devtools-extension'
-import rootReducer from './reducer'
+import { store } from './store';
 
 
-
-//create redux store
-const store = createStore(rootReducer, composeWithDevTools());
 
 //provice redux store
 

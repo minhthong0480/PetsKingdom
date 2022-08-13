@@ -23,7 +23,8 @@ const hashPass = await bcrypt.hash(req.body.password, salt)
 const user = new User({
     name: req.body.name,
     email: req.body.email,
-    password: hashPass
+    password: hashPass,
+    isStaff: req.body.isStaff
 });
 try {
     const saveUser = await user.save();
@@ -53,7 +54,7 @@ router.post('/login', async (req, res) => {
 
     //Token
     const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET)
-    res.header('auth-token', token).send(token)
+    res.header('auth-token', token).send({user, token})
 
     //res.send('Logged In')
 })
