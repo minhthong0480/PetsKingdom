@@ -1,31 +1,25 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import RegisterForm from "../components/RegisterForm";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { register } from "../action/auth";
+import { useDispatch } from "react-redux";
 
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     //console.table({ name, email, password });
-    try {
-      const res = await axios.post(`http://localhost:4000/api/user/register`, {
-        name: name,
-        email: email,
-        password: password,
-      });
-      console.log("REGISTER USER ===> ", res);
-      toast.success("Register success. Please Login");
-    } catch (error) {
-      console.log(error);
-      if (error.response.status === 400) {
-        toast.error(error.response.data);
-      }
-    }
+    dispatch(register({name, email, password}, navigate))
   };
 
   return (
