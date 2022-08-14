@@ -5,39 +5,21 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { register } from "../action/auth";
+import { useDispatch } from "react-redux";
 
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     //console.table({ name, email, password });
-    try {
-      const res = await register({
-        name: name,
-        email: email,
-        password: password,
-      });
-      console.log("REGISTER USER ===> ", res);
-      //create popup for successful login
-      toast.success("Register successfully. Back to Login page in 5 second", {
-        autoClose: 3000,
-      });
-      //redirect to login page in 3s
-      setTimeout(() => {
-        navigate("/login");
-      }, 4000);
-    } catch (error) {
-      console.log(error);
-      if (error.response.status === 400) {
-        //create popup for error
-        toast.error(error.response.data);
-      }
-    }
+    dispatch(register({name, email, password}, navigate))
   };
 
   return (

@@ -3,29 +3,22 @@ import { toast } from "react-toastify";
 import { login } from "../action/auth";
 import { Link } from "react-router-dom";
 import LoginForm from "../components/LoginForm";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("thong@gmail.com");
+  const [password, setPassword] = useState("123456");
 
-  const handleSubmit = async (e) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('SEND DATA', {email, password})
-    try {
-        let res = await login({email, password})
-        
-        if(res.data){
-            console.log('SAVE USER RES IN REDUX AND LOCAL STORAGE THEN REDIRECT ===> ')
-            console.log(res.data)
-        }
-    } catch (error) {
-        console.log(error);
-        if (error.response.status === 400) {
-          //create popup for error
-          toast.error(error.response.data);
-        }
-    }
-  };
+    console.log("SEND DATA", { email, password });
+    dispatch(login({email, password}, navigate))
+    
+  }
   return (
     <Fragment>
       <div className="containter h1 bg-secondary p-5 text-center">

@@ -38,7 +38,7 @@ const register = async (req, res) => {
 //Login feature
 const login = async (req, res) => {
   //validate login data
-  console.log(req.body);
+  //console.log(req.body);
   const { error } = loginValid(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -56,7 +56,12 @@ const login = async (req, res) => {
 
   //Token
   const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
-  res.header("auth-token", token).send({ user, token });
+  res.status(200).send({ token, user:{
+    _id:user._id,
+    name: user.name,
+    email: user.email,
+    isStaff: user.isStaff
+  } });
 
   //res.send('Logged In')
 };
