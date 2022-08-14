@@ -40,8 +40,6 @@ const Register = () => {
     }
   };
 
-  //console.log(process.env.REACT_APP_API)
-
   return (
     <>
       <div className="container-fluid bg-secondary p-5 text-center">
