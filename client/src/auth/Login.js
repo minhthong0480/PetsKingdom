@@ -10,6 +10,21 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('SEND DATA', {email, password})
+    try {
+        let res = await login({email, password})
+        
+        if(res.data){
+            console.log('SAVE USER RES IN REDUX AND LOCAL STORAGE THEN REDIRECT ===> ')
+            console.log(res.data)
+        }
+    } catch (error) {
+        console.log(error);
+        if (error.response.status === 400) {
+          //create popup for error
+          toast.error(error.response.data);
+        }
+    }
   };
   return (
     <Fragment>
