@@ -18,54 +18,65 @@ const Navbar = () => {
     navigate("/login");
   };
   return (
-
     <nav className=" navbar navbar-expand bg-light">
       <div className="container-fluid">
-      <ul className="nav navbar-nav me-auto mb-2 mb-lg-0">
-        <li className="nav-item">
-        <Link className="nav-link active" to="/">
-          Home
-        </Link>
-        </li>
-        {auth !== null && (
-        <ul className="nav">
+        <ul className="nav navbar-nav me-auto mb-2 mb-lg-0">
           <li className="nav-item">
-          <Link className="nav-link active" to="/myaccount">
-            My Account
-          </Link>
-        </li>
-        </ul>
-      )}
-      </ul>
-      
-      {auth !== null && (
-        <ul className="nav justify-content-end">
-          <li className="nav-item">
-            <a className="nav-link pointer active" onClick={logout}>
-              Logout
-            </a>
+            <Link className="nav-link active" to="/">
+              Home
+            </Link>
           </li>
+          {auth !== null && (
+            <ul className="nav">
+              <li className="nav-item">
+                <Link className="nav-link active" to="/myaccount">
+                  My Account
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link active" to="/dashboard">
+                  Dashboard
+                </Link>
+              </li>
+            </ul>
+          )}
         </ul>
-      )}
 
-      {auth === null && (
-        <ul className="nav justify-content-end">
-          <li className="nav-item">
-            <Link className="nav-link active" to="/login">
-              Login
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link active" to="/register">
-              Register
-            </Link>
-          </li>
-        </ul>
-      )}
-      <form className="d-flex" role="search">
-        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button className="btn btn-outline-success" type="submit">Search</button>
-      </form>
+        {auth !== null && (
+          <ul className="nav justify-content-end">
+            <li className="nav-item">
+              <a className="nav-link pointer active" onClick={logout}>
+                Logout
+              </a>
+            </li>
+          </ul>
+        )}
+
+        {auth === null && (
+          <ul className="nav justify-content-end">
+            <li className="nav-item">
+              <Link className="nav-link active" to="/login">
+                Login
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link active" to="/register">
+                Register
+              </Link>
+            </li>
+          </ul>
+        )}
+        <form className="d-flex" role="search">
+          <input
+            className="form-control me-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button className="btn btn-outline-success" type="submit">
+            Search
+          </button>
+        </form>
       </div>
     </nav>
   );

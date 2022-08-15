@@ -14,6 +14,9 @@ import PrivateRoute from "./components/PrivateRoute";
 import Redirect from "./components/Redirect";
 import ForgotPassword from "./components/ForgotPassword";
 import Dashboard from "./user/Dashboard";
+import DashboardPet from "./user/DashboardPet";
+
+
 
 function App() {
   return (
@@ -26,10 +29,12 @@ function App() {
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/myaccount" element={<MyAccount />} />
         <Route exact path="/register" element={<Register />} />
-        {/* <Route exact path="/dashboard" element={<Dashboard />} /> */}
         <Route exact path="/forgot-password" element={<ForgotPassword />} />
+        
+        {/* code for private route */}
         <Route element={<PrivateRoute />}>
           <Route exact path="/dashboard" element={<Dashboard />} />
+          <Route exact path="dashboard/pet" element={<DashboardPet />} />
         </Route>
       </Routes>
     </BrowserRouter>

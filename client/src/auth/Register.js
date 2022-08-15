@@ -1,8 +1,6 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import RegisterForm from "../components/RegisterForm";
-import axios from "axios";
-import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { register } from "../action/auth";
 import { useDispatch } from "react-redux";
