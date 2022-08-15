@@ -13,7 +13,7 @@ import "react-toastify/dist/ReactToastify.css";
 import PrivateRoute from "./components/PrivateRoute";
 import Redirect from "./components/Redirect";
 import ForgotPassword from "./components/ForgotPassword";
-import Dashboard from "./user/UserDashboard";
+import Dashboard from "./user/Dashboard";
 
 function App() {
   return (
