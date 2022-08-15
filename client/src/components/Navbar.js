@@ -18,31 +18,54 @@ const Navbar = () => {
     navigate("/login");
   };
   return (
-    // <div className="nav bg-light d-flex justify-content-between">
 
-    // </div>
-    <nav className="navbar navbar-expand-lg bg-light d-flex justify-content-between">
+    <nav className=" navbar navbar-expand bg-light">
       <div className="container-fluid">
-        <Link className="nav-link" to="/">
+      <ul className="nav navbar-nav me-auto mb-2 mb-lg-0">
+        <li className="nav-item">
+        <Link className="nav-link active" to="/">
           Home
         </Link>
-
+        </li>
         {auth !== null && (
-          <a className="nav-link pointer" onClick={logout}>
-            Logout
-          </a>
-        )}
+        <ul className="nav">
+          <li className="nav-item">
+          <Link className="nav-link active" to="/myaccount">
+            My Account
+          </Link>
+        </li>
+        </ul>
+      )}
+      </ul>
+      
+      {auth !== null && (
+        <ul className="nav justify-content-end">
+          <li className="nav-item">
+            <a className="nav-link pointer active" onClick={logout}>
+              Logout
+            </a>
+          </li>
+        </ul>
+      )}
 
-        {auth === null && (
-          <Fragment>
-            <Link className="nav-link" to="/login">
+      {auth === null && (
+        <ul className="nav justify-content-end">
+          <li className="nav-item">
+            <Link className="nav-link active" to="/login">
               Login
             </Link>
-            <Link className="nav-link" to="/register">
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link active" to="/login">
               Register
             </Link>
-          </Fragment>
-        )}
+          </li>
+        </ul>
+      )}
+      <form className="d-flex" role="search">
+        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+        <button className="btn btn-outline-success" type="submit">Search</button>
+      </form>
       </div>
     </nav>
   );
