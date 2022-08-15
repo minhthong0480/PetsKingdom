@@ -4,7 +4,6 @@ import Home from "./components/Home";
 import Register from "./auth/Register";
 import Navbar from "./components/Navbar";
 import MyAccount from "./components/MyAccount";
-import Dashboard from "./user/UserDashboard";
 
 //import dependencies
 import React from "react";
@@ -13,6 +12,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PrivateRoute from "./components/PrivateRoute";
 import Redirect from "./components/Redirect";
+import ForgotPassword from "./components/ForgotPassword";
+import Dashboard from "./user/UserDashboard";
 
 function App() {
   return (
@@ -25,15 +26,11 @@ function App() {
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/myaccount" element={<MyAccount />} />
         <Route exact path="/register" element={<Register />} />
-        <Route
-          exact
-          path="/dashboard"
-          element={
-            <PrivateRoute>
-              <PrivateRoute />
-            </PrivateRoute>
-          }
-        />
+        {/* <Route exact path="/dashboard" element={<Dashboard />} /> */}
+        <Route exact path="/forgot-password" element={<ForgotPassword />} />
+        <Route element={<PrivateRoute />}>
+          <Route exact path="/dashboard" element={<Dashboard />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

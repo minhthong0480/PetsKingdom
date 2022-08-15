@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 const LoginForm = ({
   handleSubmit,
@@ -28,7 +29,8 @@ const LoginForm = ({
         onChange={(e) => setPassword(e.target.value)}
       />
     </div>
-    <button disabled={!email || !password} className="btn btn-primary">Login</button>
+    <button disabled={!email || !password} className="btn btn-primary mb-2">Login</button><br />
+    Forgot your password? <Link to='/forgot-password'>Click Here</Link>
   </form>
 )
 
