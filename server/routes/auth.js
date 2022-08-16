@@ -61,3 +61,4 @@ router.post('/login', login)
 
 //   //res.send('Logged In')
 // });
+  module.exports = router

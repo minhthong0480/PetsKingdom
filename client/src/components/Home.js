@@ -1,12 +1,12 @@
 import React from "react";
-import {userSelector, useSelector, useStore} from 'react-redux'
+import {useSelector} from 'react-redux'
 
 const Home = () =>{
-    const {user} = useSelector((state) => ({...state}))
+    const {auth} = useSelector((state) => ({...state}))
 
     return (
         <div className='containter-fluid h1 p-5 text-center'>
-            Homepage 
+            Homepage {JSON.stringify(auth)}
         </div>
     )
 }
