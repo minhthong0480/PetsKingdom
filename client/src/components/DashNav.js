@@ -6,26 +6,26 @@ const DashNav = () => {
   console.log(active);
   return (
     <Fragment>
-        <ul className="nav nav-tabs">
-      <li className="nav-item">
-        <Link
-          className={`nav-link ${active === "/dashboard" && "active"}`}
-          to="/dashboard"
-        >
-          Your Pets
-        </Link>
-      </li>
+      
+      <ul className="nav nav-tabs">
+        <li className="nav-item">
+          <Link
+            className={`nav-link ${active === "/user/dashboard" && "active"}`}
+            to="/user/dashboard"
+          >
+            Your Pets
+          </Link>
+        </li>
 
-      <li className="nav-item">
-        <Link
-          className={`nav-link ${active === "/dashboard/pet" && "active"}`}
-          to="/dashboard/pet"
-        >
-          Your Booking
-        </Link>
-      </li>
-    </ul>
-    
+        <li className="nav-item">
+          <Link
+            className={`nav-link ${active === "/user/dashboard/pet" && "active"}`}
+            to="/user/dashboard/pet"
+          >
+            Your Booking
+          </Link>
+        </li>
+      </ul>
     </Fragment>
   );
 };
