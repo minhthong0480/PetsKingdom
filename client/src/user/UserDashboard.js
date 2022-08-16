@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import DashNav from "../components/DashNav";
 import { Link } from "react-router-dom";
 
-const Dashboard = () => {
+const UserDashboard = () => {
   return (
     <Fragment>
       <div className="container-fluid bg-secondary p-5 text-center">
@@ -35,4 +35,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default UserDashboard;
