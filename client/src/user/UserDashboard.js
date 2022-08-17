@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import DashNav from "../components/DashNav";
 
-const Dashboard = () => {
+const UserDashboard = () => {
   return (
     <Fragment>
       <div className="container-fluid bg-secondary p-5 text-center">
@@ -18,15 +18,20 @@ const Dashboard = () => {
             <h2>Pet Collection</h2>
           </div>
           <div className="col-md-3">
-            <div className="input-group mb-3">
-              <input type="text" className="form-control" />
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" />
               <button
-                className="btn btn-primary"
+                class="btn btn-primary"
                 type="button"
               >
                 Search
               </button>
             </div>
+          </div>
+          <div className="col-md-2">
+            <Link to="/user/pet" className="btn btn-primary">
+              + Add New
+            </Link>
           </div>
         </div>
       </div>
@@ -34,4 +39,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default UserDashboard;

@@ -7,7 +7,7 @@ import MyAccount from "./components/MyAccount";
 import ForgotPassword from "./components/ForgotPassword";
 import UserDashboard from "./user/UserDashboard";
 import UserDashboardPet from "./user/UserDashboardPet";
-import UserBooking from "./booking/Userbooking";
+import UserBooking from './booking/Userbooking'
 
 //import dependencies
 import React from "react";
@@ -33,11 +33,7 @@ function App() {
         {/* code for private route */}
         <Route element={<PrivateRoute />}>
           <Route exact path="user/dashboard" element={<UserDashboard />} />
-          <Route
-            exact
-            path="user/dashboard/pet"
-            element={<UserDashboardPet />}
-          />
+          <Route exact path="user/dashboard/pet" element={<UserDashboardPet />} />
           <Route exact path="/user/booking" element={<UserBooking />} />
         </Route>
       </Routes>

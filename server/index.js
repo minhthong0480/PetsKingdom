@@ -26,7 +26,7 @@ app.get('/products/:id', function (req, res, next) {
 })
 
 // Router middleware
-app.use("/api/user", authRoute);
+app.use("/api/", authRoute);
 app.use("/api/posts", postRoute);
 
 app.listen(4000, () => console.log("Server is Up and Running"));

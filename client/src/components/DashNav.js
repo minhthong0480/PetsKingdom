@@ -19,8 +19,8 @@ const DashNav = () => {
 
         <li className="nav-item">
           <Link
-            className={`nav-link ${active === "/user/dashboard/pet" && "active"}`}
-            to="/user/dashboard/pet"
+            className={`nav-link ${active === "/user/dashboard/booking" && "active"}`}
+            to="/user/dashboard/booking"
           >
             Your Booking
           </Link>

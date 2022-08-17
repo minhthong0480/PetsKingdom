@@ -5,9 +5,9 @@ import { register } from "../action/auth";
 import { useDispatch } from "react-redux";
 
 const Register = () => {
-  const [name, setName] = useState("thong");
-  const [email, setEmail] = useState("thong@gmail.com");
-  const [password, setPassword] = useState("123");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
 

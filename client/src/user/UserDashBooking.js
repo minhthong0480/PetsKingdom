@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import DashNav from "../components/DashNav";
 import { Link } from "react-router-dom";
 
-const DashboardPet = () => {
+const UserDashBooking = () => {
   return (
     <Fragment>
       <div className="container-fluid bg-secondary p-5 text-center">
@@ -27,4 +27,4 @@ const DashboardPet = () => {
   );
 };
 
-export default DashboardPet;
+export default UserDashBooking;
