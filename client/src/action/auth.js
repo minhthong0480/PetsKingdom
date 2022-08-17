@@ -43,7 +43,7 @@ export const login = (userdata, navigate) => async (dispatch) => {
       type: "LOGGED_IN_USER",
       payload: res.data,
     });
-    navigate("/dasboard");
+    navigate("/");
   } catch (e) {
     if (e.response.status === 400) {
       toast.error(e.response.data);
