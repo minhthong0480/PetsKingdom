@@ -1,11 +1,8 @@
-import express from 'express'
-
-const router = express.Router()
+const router = require("express").Router();
 
 //controller
+const { create } = require("../controller/pet");
 
-import {create} from '../controller/pet'
+router.post("/create-pet", create);
 
-router.post('/create-pet', create)
-
-module.exports = router
+module.exports = router;

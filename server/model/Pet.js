@@ -1,42 +1,46 @@
-import mongoose from 'mongoose'
+const mongoose = require("mongoose");
 
+const { Schema } = mongoose;
+const { OBjectId } = mongoose.Schema;
 
-const {Schema} = mongoose
-const {OBjectId} = mongoose.Schema
-
-const petSchema = new Schema ({
+const petSchema = new Schema(
+  {
     petname: {
-        type: String,
-        required: 'Pet name is required'
+      type: String,
+      required: "Pet name is required",
     },
 
     age: {
-        type: Number,
+      type: Number,
     },
 
     breed: {
-        type: String,
-        required: 'Pets breed is required'
+      type: String,
+      required: "Pets breed is required",
     },
 
     note: {
-        type: String,
-        max: 1000
+      type: String,
+      max: 1000,
     },
 
     postedBy: {
-        type: ObjectId,
-        ref: 'User'
+      type: mongoose.Schema.ObjectId,
+      ref: "User",
     },
 
     image: {
-        type: Buffer,
-        contentType: String
+      type: Buffer,
+      contentType: String,
     },
 
     type: {
-        type: String
+      type: String,
     },
-}, {timestamps: true})
+  },
+  { timestamps: true }
+);
 
-export default mongoose.model('Pet', petSchema)
+const petModel = mongoose.model("Pet", petSchema);
+
+module.exports = petModel;

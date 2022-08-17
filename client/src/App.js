@@ -6,8 +6,9 @@ import Navbar from "./components/Navbar";
 import MyAccount from "./components/MyAccount";
 import ForgotPassword from "./components/ForgotPassword";
 import UserDashboard from "./user/UserDashboard";
-import UserDashboardPet from "./user/UserDashboardPet";
-import UserBooking from './booking/Userbooking'
+import UserDashbooking from "./user/UserDashBooking";
+import UserBooking from './user/Userbooking'
+import UserPet from './user/UserPet'
 
 //import dependencies
 import React from "react";
@@ -33,8 +34,9 @@ function App() {
         {/* code for private route */}
         <Route element={<PrivateRoute />}>
           <Route exact path="user/dashboard" element={<UserDashboard />} />
-          <Route exact path="user/dashboard/pet" element={<UserDashboardPet />} />
-          <Route exact path="/user/booking" element={<UserBooking />} />
+          <Route exact path="user/dashboard/booking" element={<UserDashbooking />} />
+          <Route exact path="user/booking" element={<UserBooking />} />
+          <Route exact path="/user/pet" element={<UserPet />} />
         </Route>
       </Routes>
     </BrowserRouter>

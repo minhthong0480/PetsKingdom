@@ -4,7 +4,7 @@ import { DatePicker, Select } from "antd";
 import moment from "moment";
 import "antd/dist/antd.css";
 import { createPet } from "../action/pet";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const UserPet = () => {
   const { auth } = useSelector((state) => ({ ...state }));
@@ -35,8 +35,8 @@ const UserPet = () => {
   );
   //destructing variable from state
   const { petname, age, type, breed, note, image } = values;
-
-  const handleSubmit = async (e) => {
+  const dispatch = useDispatch();
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     let petData = new FormData();
@@ -49,8 +49,8 @@ const UserPet = () => {
 
     console.log([...petData]);
 
-    let res = await createPet(token, petData);
-    console.log("HOTEL CREATE RES", res);
+    dispatch(createPet(token, petData));
+    // console.log("HOTEL CREATE RES", res);
     //toast("New hotel added");
     // setTimeout(() => {
     //   window.location.reload();
@@ -108,10 +108,15 @@ const UserPet = () => {
           values={type}
         /> */}
 
-        <Select onChange={(value)=>setValues({...values, type: value})} className='w-100 m-2' size="large" placeholder='Type of your Pet'>
-          <Option key={1}>{'Dog'}</Option>
-          <Option key={2}>{'Cat'}</Option>
-          <Option key={3}>{'Bird'}</Option>
+        <Select
+          onChange={(value) => setValues({ ...values, type: value })}
+          className="w-100 m-2"
+          size="large"
+          placeholder="Type of your Pet"
+        >
+          <Option key={1}>{"Dog"}</Option>
+          <Option key={2}>{"Cat"}</Option>
+          <Option key={3}>{"Bird"}</Option>
         </Select>
 
         <input
@@ -133,7 +138,7 @@ const UserPet = () => {
         />
       </div>
 
-      {/* <RangePicker className="form-control m-2" disabledDate={disabledDate} /> */}
+      <RangePicker className="form-control m-2" disabledDate={disabledDate} />
 
       <button className="btn btn-outline-primary m-2">Save</button>
     </form>

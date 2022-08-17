@@ -1,5 +1,9 @@
-import Pet from '../model/Pet.js'
+const Pet = require("../model/Pet")
 
-export const create = async (req, res)=>{
-    console.log('Pet created')
+const create = async (req, res)=>{
+    return res.send("successfully");
+}
+
+module.exports = {
+    create
 }

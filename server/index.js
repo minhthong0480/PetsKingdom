@@ -8,6 +8,7 @@ const cors = require('cors')
 //import route
 const authRoute = require("./routes/auth");
 const postRoute = require("./routes/posts");
+const petRoute = require("./routes/pet");
 
 dotenv.config();
 
@@ -27,6 +28,7 @@ app.get('/products/:id', function (req, res, next) {
 
 // Router middleware
 app.use("/api/", authRoute);
-app.use("/api/posts", postRoute);
+// app.use("/api/posts", postRoute);
+app.use("/api/pets", petRoute)
 
 app.listen(4000, () => console.log("Server is Up and Running"));
