@@ -1,6 +1,5 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useDispatch } from "react-redux";
 
 export const register = (userdata, navigate) => async (dispatch) => {
   try {

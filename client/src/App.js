@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar";
 import MyAccount from "./components/MyAccount";
 import ForgotPassword from "./components/ForgotPassword";
 import UserDashboard from "./user/UserDashboard";
-import UserBooking from './user/Userbooking'
+import Userbooking from './user/Userbooking'
 import UserDashBooking from "./user/UserDashBooking";
 import UserPet from './user/UserPet'
 
@@ -38,7 +38,7 @@ function App() {
         <Route element={<PrivateRoute />}>
           <Route exact path="/user/dashboard" element={<UserDashboard />} />
           <Route exact path="/user/dashboard/booking" element={<UserDashBooking />} />
-          <Route exact path="/user/booking" element={<UserBooking />} />
+          <Route exact path="/user/booking" element={<Userbooking />} />
           <Route exact path="/user/pet" element={<UserPet />} />
         </Route>
       </Routes>
