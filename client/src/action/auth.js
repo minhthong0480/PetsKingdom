@@ -2,8 +2,8 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 export const register =  (userdata, navigate) => async dispatch => {
-    await axios.post(`${process.env.REACT_APP_API}/register`, userdata)
-    try {
+  try {
+      await axios.post(`${process.env.REACT_APP_API}/register`, userdata)
         const res = await register({
           name: userdata.name,
           email: userdata.email,

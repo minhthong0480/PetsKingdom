@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
-const { OBjectId } = mongoose.Schema;
+var { ObjectId } = require('mongodb').ObjectId
 
 const petSchema = new Schema(
   {
@@ -25,12 +25,12 @@ const petSchema = new Schema(
     },
 
     postedBy: {
-      type: mongoose.Schema.ObjectId,
-      ref: "User",
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
     },
 
     image: {
-      type: Buffer,
+      data: Buffer,
       contentType: String,
     },
 

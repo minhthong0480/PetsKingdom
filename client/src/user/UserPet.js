@@ -36,7 +36,8 @@ const UserPet = () => {
   //destructing variable from state
   const { petname, age, type, breed, note, image } = values;
   const dispatch = useDispatch();
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     let petData = new FormData();
@@ -49,12 +50,13 @@ const UserPet = () => {
 
     console.log([...petData]);
 
-    dispatch(createPet(token, petData));
-    // console.log("HOTEL CREATE RES", res);
-    //toast("New hotel added");
-    // setTimeout(() => {
-    //   window.location.reload();
-    // }, 1000);
+     //dispatch(createPet(token, petData));
+     let res = await createPet(token, petData)
+    console.log("PET CREATE RES", res);
+    toast("New Pet added");
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
   };
 
   const handleImageChange = (e) => {
@@ -156,7 +158,7 @@ const UserPet = () => {
           </div>
           <div className="col-md-2">
             <img src={preview} alt="preview_image" className="img-fluid m-2" />
-            <pre>{JSON.stringify(values, null, 4)}</pre>
+            {/* <pre>{JSON.stringify(values, null, 4)}</pre> */}
           </div>
         </div>
       </div>

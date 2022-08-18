@@ -13,7 +13,7 @@ const Register = () => {
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     //console.table({ name, email, password });
     dispatch(register({name, email, password}, navigate))
