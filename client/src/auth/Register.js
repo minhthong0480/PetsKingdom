@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { Fragment, useState } from "react";
 import RegisterForm from "../components/RegisterForm";
 import { useNavigate } from "react-router-dom";
 import { register } from "../action/auth";
@@ -21,7 +20,7 @@ const Register = () => {
   };
 
   return (
-    <>
+    <Fragment>
       <div className="container-fluid bg-secondary p-5 text-center">
         <h1>Register</h1>
       </div>
@@ -41,7 +40,7 @@ const Register = () => {
           </div>
         </div>
       </div>
-    </>
+    </Fragment>
   );
 };
 

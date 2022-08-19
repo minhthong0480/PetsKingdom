@@ -1,7 +1,6 @@
 import { Fragment } from "react";
 import DashNav from "../components/DashNav";
 import { Link } from "react-router-dom";
-
 const UserDashboard = () => {
   return (
     <Fragment>
@@ -19,15 +18,17 @@ const UserDashboard = () => {
             <h2>Pet Collection</h2>
           </div>
           <div className="col-md-3">
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" />
-              <button
-                class="btn btn-primary"
-                type="button"
-              >
+            <div className="input-group mb-3">
+              <input type="text" className="form-control" />
+              <button className="btn btn-primary" type="button">
                 Search
               </button>
             </div>
+          </div>
+          <div className="col-md-2">
+            <Link to="/user/pet" className="btn btn-primary">
+              + Add New
+            </Link>
           </div>
         </div>
       </div>

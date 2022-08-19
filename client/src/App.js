@@ -6,7 +6,9 @@ import Navbar from "./components/Navbar";
 import MyAccount from "./components/MyAccount";
 import ForgotPassword from "./components/ForgotPassword";
 import UserDashboard from "./user/UserDashboard";
-import UserBooking from './booking/Userbooking'
+import UserDashbooking from "./user/UserDashBooking";
+import UserBooking from './user/Userbooking'
+import UserPet from './user/UserPet'
 
 //import dependencies
 import React from "react";
@@ -15,10 +17,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PrivateRoute from "./components/PrivateRoute";
 import Redirect from "./components/Redirect";
-import UserDashBooking from "./user/UserDashBooking";
-
-
-
 
 function App() {
   return (
@@ -32,12 +30,13 @@ function App() {
         <Route exact path="/myaccount" element={<MyAccount />} />
         <Route exact path="/register" element={<Register />} />
         <Route exact path="/forgot-password" element={<ForgotPassword />} />
-        
+
         {/* code for private route */}
         <Route element={<PrivateRoute />}>
           <Route exact path="user/dashboard" element={<UserDashboard />} />
-          <Route exact path="user/dashboard/booking" element={<UserDashBooking />} />
-          <Route exact path="/user/booking" element={<UserBooking />} />
+          <Route exact path="user/dashboard/booking" element={<UserDashbooking />} />
+          <Route exact path="user/booking" element={<UserBooking />} />
+          <Route exact path="/user/pet" element={<UserPet />} />
         </Route>
       </Routes>
     </BrowserRouter>
