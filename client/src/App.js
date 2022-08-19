@@ -8,6 +8,7 @@ import ForgotPassword from "./components/ForgotPassword";
 import UserDashboard from "./user/UserDashboard";
 import UserDashboardPet from "./user/UserDashboardPet";
 import UserBooking from './booking/Userbooking'
+import ContactUs from './components/ContacUs'
 
 //import dependencies
 import React from "react";
@@ -32,6 +33,7 @@ function App() {
         <Route exact path="/myaccount" element={<MyAccount />} />
         <Route exact path="/register" element={<Register />} />
         <Route exact path="/forgot-password" element={<ForgotPassword />} />
+        <Route exact path="/contact-us" element={<ContactUs />} />
         
         {/* code for private route */}
         <Route element={<PrivateRoute />}>

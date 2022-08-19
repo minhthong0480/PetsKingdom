@@ -26,6 +26,11 @@ const Navbar = () => {
               Home
             </Link>
           </li>
+          <li className="nav-item">
+            <Link className="nav-link active" to="/contact-us">
+              Contact US
+            </Link>
+          </li>
           {auth !== null && (
             <ul className="nav">
               <li className="nav-item">

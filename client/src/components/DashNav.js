@@ -6,7 +6,6 @@ const DashNav = () => {
   console.log(active);
   return (
     <Fragment>
-      
       <ul className="nav nav-tabs">
         <li className="nav-item">
           <Link
@@ -19,7 +18,9 @@ const DashNav = () => {
 
         <li className="nav-item">
           <Link
-            className={`nav-link ${active === "/user/dashboard/pet" && "active"}`}
+            className={`nav-link ${
+              active === "/user/dashboard/pet" && "active"
+            }`}
             to="/user/dashboard/pet"
           >
             Your Booking
