@@ -11,7 +11,7 @@ router.post('/register', async (req, res) => {
 const {error} = registerValid(req.body);
 if(error) return res.status(400).send(error.details[0].message)
 
-//check if user exited
+//check if user existed
 const emailExist = await User.findOne({email: req.body.email});
 if(emailExist){return res.status(400).send('Email already existed')}
 
@@ -58,6 +58,7 @@ router.post('/login', async (req, res) => {
 
     //res.send('Logged In')
 })
+
 
 
 
