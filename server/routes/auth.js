@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken')
 const {registerValid} = require('../validation')
 const {loginValid} = require('../validation')
 const bcrypt = require('bcryptjs')
-
+const {updateUserProfile} = require('../controller/auth');
 //Register feature
 router.post('/register', async (req, res) => {
 //validate data
@@ -59,7 +59,7 @@ router.post('/login', async (req, res) => {
     //res.send('Logged In')
 })
 
-
+router.post('/profile', updateUserProfile);
 
 
 module.exports = router;

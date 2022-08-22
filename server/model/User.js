@@ -18,7 +18,17 @@ const userSchema = new mongoose.Schema({
     isStaff: {
         type: Boolean,
         default: false
-    }
+    },
+    phone: {
+        type: String,
+        required: true,
+        min: 6
+    }, 
+    city: {
+        type: String,
+        required: true,
+        min: 6
+    },
     
     // date: {
     //     type: Date,
