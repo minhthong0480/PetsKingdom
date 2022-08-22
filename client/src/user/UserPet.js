@@ -1,10 +1,9 @@
 import { Fragment, React, useState } from "react";
 import { toast } from "react-toastify";
 import { DatePicker, Select } from "antd";
-import moment from "moment";
 import "antd/dist/antd.css";
 import { createPet } from "../action/pet";
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import PetCreateForm from "../components/forms/PetCreateForm";
 import { useNavigate } from "react-router-dom";
 
@@ -44,6 +43,7 @@ const UserPet = () => {
     petData.append("type", type);
     petData.append("breed", breed);
     petData.append("note", note);
+    petData.append("postedBy", auth.user._id);
     image && petData.append("image", image);
 
     console.log([...petData]);

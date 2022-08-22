@@ -9,6 +9,9 @@ import UserDashboard from "./user/UserDashboard";
 import UserDashbooking from "./user/UserDashBooking";
 import UserBooking from './user/Userbooking'
 import UserPet from './user/UserPet'
+import StaffDashboard from './staff/StaffDashboard'
+import StaffDashBooking from './staff/StaffDashBooking'
+import StaffBooking from './staff/StaffBooking'
 
 //import dependencies
 import React from "react";
@@ -17,6 +20,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PrivateRoute from "./components/PrivateRoute";
 import Redirect from "./components/Redirect";
+
 
 function App() {
   return (
@@ -37,6 +41,9 @@ function App() {
           <Route exact path="user/dashboard/booking" element={<UserDashbooking />} />
           <Route exact path="user/booking" element={<UserBooking />} />
           <Route exact path="/user/pet" element={<UserPet />} />
+          <Route exact path="staff/dashboard" element={<StaffDashboard />} />
+          <Route exact path="staff/dashboard/booking" element={<StaffDashBooking />} />
+          <Route exact path="staff/booking" element={<StaffBooking />} />
         </Route>
       </Routes>
     </BrowserRouter>
