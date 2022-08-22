@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { login } from "../action/auth";
-import LoginForm from "../components/LoginForm";
+import LoginForm from "../components/forms/LoginForm";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
