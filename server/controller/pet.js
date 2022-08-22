@@ -2,7 +2,7 @@ const Pet = require("../model/Pet")
 const fs = require('fs')
 
 const create = async (req, res)=>{
-    console.log('Pet created')
+    //console.log('Pet created')
     // console.log('req.fields', req.fields);
     // console.log('req.files', req.files);
     try {
@@ -18,7 +18,7 @@ const create = async (req, res)=>{
         pet.save((error, result)=>{
             if(error){
                 console.log('Cannot save pet', error)
-                res.status(400).send('Error saving')
+                res.status(400).send('Saving pet error')
             }
             res.json(result);
         })
@@ -31,6 +31,22 @@ const create = async (req, res)=>{
     }
 }
 
-module.exports = {
-    create
+const pets = async (req, res) => {
+    let all = await Pet.find({})
+    .limit(24)
+    .select('-image.data')
+    .populate('postedBy', '_id name')
+    .exec();
+    //console.log(all)
+    res.json(all);
 }
+
+const image = async (req, res) => {
+    let pet = await Pet.findById(req.params.petId).exec();
+    if(pet && pet.image && pet.image.data !==null){
+        res.set('Content-Type', pet.image.contentType)
+        return res.send(pet.image.data)
+    }
+}
+
+module.exports = {create, pets, image}

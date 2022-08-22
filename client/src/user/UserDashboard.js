@@ -1,7 +1,23 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import DashNav from "../components/DashNav";
 import { Link } from "react-router-dom";
+import { allPets } from "../action/pet";
+import SmallCard from "../components/cards/SmallCard";
+
+
 const UserDashboard = () => {
+  const [pets, setPets] = useState ([])
+
+    useEffect(()=>{
+        loadAllPets();
+    },[]);
+
+    // const {auth} = useSelector((state) => ({...state}))
+
+    const loadAllPets = async () =>{
+        let res = await allPets();
+        setPets(res.data);
+    }
   return (
     <Fragment>
       <div className="container-fluid bg-secondary p-5 text-center">
@@ -14,7 +30,7 @@ const UserDashboard = () => {
 
       <div className="container-fluid">
         <div className="row">
-          <div className="col-md-10">
+          <div className="col-md-10 text-center">
             <h2>Pet Collection</h2>
           </div>
           <div className="col-md-3">
@@ -31,6 +47,13 @@ const UserDashboard = () => {
             </Link>
           </div>
         </div>
+      </div>
+      <div className="container-fluid">
+        <br />
+        {/* <pre>{JSON.stringify(pets, null, 4)}</pre> */}
+        {pets.map((h) => (
+          <SmallCard key={h._id} h={h}/>
+        ))}
       </div>
     </Fragment>
   );

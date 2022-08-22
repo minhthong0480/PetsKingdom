@@ -1,14 +1,14 @@
-import React from "react";
-import {useSelector} from 'react-redux'
+import React, { Fragment } from "react";
+import { useSelector } from "react-redux";
 
-const Home = () =>{
-    const {auth} = useSelector((state) => ({...state}))
+const Home = () => {
+  return (
+    <Fragment>
+      <div className="containter-fluid h1 p-5 text-center">
+        <h1>Home</h1>
+      </div>
+    </Fragment>
+  );
+};
 
-    return (
-        <div className='containter-fluid h1 p-5 text-center'>
-            Homepage {JSON.stringify(auth)}
-        </div>
-    )
-}
-
-export default Home
+export default Home;

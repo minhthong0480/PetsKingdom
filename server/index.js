@@ -7,7 +7,6 @@ const cors = require('cors')
 
 //import route
 const authRoute = require("./routes/auth");
-const postRoute = require("./routes/posts");
 const petRoute = require("./routes/pet");
 //const staffRoute = require("./routes/staff");
 
