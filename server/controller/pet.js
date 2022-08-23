@@ -32,7 +32,7 @@ const create = async (req, res)=>{
 }
 
 const pets = async (req, res) => {
-    let all = await Pet.find({})
+    let all = await Pet.find({postedBy: req.user})
     .limit(24)
     .select('-image.data')
     .populate('postedBy', '_id name')

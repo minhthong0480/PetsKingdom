@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const { auth } = useSelector((state) => ({ ...state }));
+  console.log(auth);
+  // const {isStaff} = useSelector((state) => state.isStaff);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -28,13 +30,16 @@ const Navbar = () => {
           </li>
           {auth !== null && (
             <ul className="nav">
+              {!auth.user.isStaff && (
+                <li className="nav-item">
+                  <Link className="nav-link active" to="/myaccount">
+                    My Account
+                  </Link>
+                </li>
+              )}
+
               <li className="nav-item">
-                <Link className="nav-link active" to="/myaccount">
-                  My Account
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link active" to="user/dashboard">
+                <Link className="nav-link active" to={auth.user.isStaff ? "staff/dashboard" : "user/dashboard"}>
                   Dashboard
                 </Link>
               </li>

@@ -1,16 +1,32 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { allPets } from "../action/pet";
 
 function Userbooking() {
-  const bookingForm = () => {
-      
-      <form>
-        <div className="form-group">
-          <label className="btn btn-primary">
-              <input type="file" name='image' />
-          </label>
-        </div>
-      </form>
-    
+
+  const [pets, setPets] = useState([])
+  const { auth } = useSelector((state) => ({ ...state }));
+  const { token } = auth;
+
+    useEffect(()=>{
+        loadAllPets();
+    },[]);
+
+    // const {auth} = useSelector((state) => ({...state}))
+
+    const loadAllPets = async () =>{
+        let res = await allPets(auth.token);
+        setPets(res.data);
+    }
+
+  const UserBookingForm = () => {
+    return (
+      <select class="form-select" aria-label="Default select example">
+        {
+          pets.map(pet => <option value={pet._id}>{pet.petname}</option>)
+        }
+      </select>
+    );
   };
 
   return (
@@ -20,9 +36,8 @@ function Userbooking() {
         <div className="row">
           <div className="col-md-10">
             <br />
-            {bookingForm()}
+            {UserBookingForm()}
           </div>
-          
         </div>
       </div>
     </Fragment>

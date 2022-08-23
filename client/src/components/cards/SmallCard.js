@@ -36,7 +36,7 @@ const SmallCard = ({
                 Note: {`${h.note.substring(1, 200)}...`}
               </p>
               <p className="card-text">Owner: {h.ownername}</p>
-              {/* <p className="card-text">Type: {h.type}</p> */}
+              <p className="card-text">Type: {h.type}</p>
               <p className="card-text">Age: {h.age}</p>
               <p className="card-text">Breed: {h.breed}</p>
 

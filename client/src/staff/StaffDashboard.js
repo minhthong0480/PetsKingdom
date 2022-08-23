@@ -3,6 +3,7 @@ import DashNav from "../components/DashNav";
 import { Link } from "react-router-dom";
 import { allPets } from "../action/pet";
 import SmallCard from "../components/cards/SmallCard";
+import StaffDashNav from '../components/StaffDashNav'
 import { useSelector } from "react-redux";
 
 const UserDashboard = () => {
@@ -12,25 +13,22 @@ const UserDashboard = () => {
 
     useEffect(()=>{
         loadAllPets();
-
     },[]);
+
     // const {auth} = useSelector((state) => ({...state}))
 
     const loadAllPets = async () =>{
-        let res = await allPets(auth.token);
+        let res = await allPets(token);
         setPets(res.data);
-
     }
-    console.log(pets)
-
   return (
     <Fragment>
       <div className="container-fluid bg-secondary p-5 text-center">
-        <h1>Dashboard</h1>
+        <h1>Staff Dashboard</h1>
       </div>
 
       <div className="container-fluid p-4">
-        <DashNav />
+        <StaffDashNav />
       </div>
 
       <div className="container-fluid">
@@ -56,7 +54,7 @@ const UserDashboard = () => {
       <div className="container-fluid">
         <br />
         {/* <pre>{JSON.stringify(pets, null, 4)}</pre> */}
-        {pets.length > 0 && pets.map((h) => (
+        {pets.map((h) => (
           <SmallCard key={h._id} h={h}/>
         ))}
       </div>

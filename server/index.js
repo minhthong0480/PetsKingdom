@@ -8,7 +8,7 @@ const cors = require('cors')
 //import route
 const authRoute = require("./routes/auth");
 const petRoute = require("./routes/pet");
-//const staffRoute = require("./routes/staff");
+const staffRoute = require("./routes/staff");
 
 dotenv.config();
 
@@ -31,6 +31,6 @@ app.use("/api/", authRoute);
 // app.use("/api/posts", postRoute);
 app.use("/api/pets", petRoute)
 
-//app.use('api/staff', staffRoute)
+app.use('/api/staff', staffRoute)
 
 app.listen(4000, () => console.log("Server is Up and Running"));
