@@ -14,7 +14,7 @@ function StaffBooking() {
 
   return (
     <Fragment>
-      <div>User Booking</div>
+      <div>Staff Booking</div>
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-10">
