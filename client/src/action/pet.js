@@ -6,7 +6,13 @@ export const createPet = async (token, data) => await axios.post(`${process.env.
     }
 })
 
-export const allPets = async (token) => await axios.get(`${process.env.REACT_APP_API}/pets/pets`, {
+export const userPets = async (token) => await axios.get(`${process.env.REACT_APP_API}/pets/pets`, {
+    headers: {
+        Authorization: `Bearer ${token}`,
+    }
+})
+
+export const allPets = async (token) => await axios.get(`${process.env.REACT_APP_API}/pets/allpets`, {
     headers: {
         Authorization: `Bearer ${token}`,
     }

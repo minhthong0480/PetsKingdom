@@ -1,30 +1,29 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { allPets } from "../action/pet";
+import { allPets, userPets } from "../action/pet";
 
 function Userbooking() {
-
-  const [pets, setPets] = useState([])
+  const [pets, setPets] = useState([]);
   const { auth } = useSelector((state) => ({ ...state }));
   const { token } = auth;
 
-    useEffect(()=>{
-        loadAllPets();
-    },[]);
+  useEffect(() => {
+    loadAllPets();
+  }, []);
 
-    // const {auth} = useSelector((state) => ({...state}))
+  // const {auth} = useSelector((state) => ({...state}))
 
-    const loadAllPets = async () =>{
-        let res = await allPets(auth.token);
-        setPets(res.data);
-    }
+  const loadAllPets = async () => {
+    let res = await userPets(auth.token);
+    setPets(res.data);
+  };
 
   const UserBookingForm = () => {
     return (
       <select class="form-select" aria-label="Default select example">
-        {
-          pets.map(pet => <option value={pet._id}>{pet.petname}</option>)
-        }
+        {pets.map((pet) => (
+          <option value={pet._id}>{pet.petname}</option>
+        ))}
       </select>
     );
   };

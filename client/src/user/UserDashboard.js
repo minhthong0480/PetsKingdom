@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
 import DashNav from "../components/DashNav";
 import { Link } from "react-router-dom";
-import { allPets } from "../action/pet";
+import { userPets } from "../action/pet";
 import SmallCard from "../components/cards/SmallCard";
 import { useSelector } from "react-redux";
 
@@ -11,17 +11,15 @@ const UserDashboard = () => {
   const { token } = auth;
 
     useEffect(()=>{
-        loadAllPets();
+        loadUserPets();
 
     },[]);
-    // const {auth} = useSelector((state) => ({...state}))
 
-    const loadAllPets = async () =>{
-        let res = await allPets(auth.token);
+    const loadUserPets = async () =>{
+        let res = await userPets(auth.token);
         setPets(res.data);
-
     }
-    console.log(pets)
+    // console.log(pets)
 
   return (
     <Fragment>

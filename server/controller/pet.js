@@ -41,6 +41,15 @@ const pets = async (req, res) => {
     res.json(all);
 }
 
+const allPets = async (req, res) => {
+    let all = await Pet.find({})
+    .limit(24)
+    .select('-image.data')
+    .populate('postedBy', '_id name')
+    .exec();
+    //console.log(all)
+    res.json(all);
+}
 const image = async (req, res) => {
     let pet = await Pet.findById(req.params.petId).exec();
     if(pet && pet.image && pet.image.data !==null){
@@ -49,4 +58,4 @@ const image = async (req, res) => {
     }
 }
 
-module.exports = {create, pets, image}
+module.exports = {create, pets,allPets, image}

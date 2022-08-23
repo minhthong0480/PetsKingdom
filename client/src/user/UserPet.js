@@ -55,7 +55,7 @@ const UserPet = () => {
     toast.success("New Pet added");
     setTimeout(() => {
       //window.location.reload();
-      navigate('../user/UserDashboard.js')
+      navigate('/user/dashboard')
     }, 3000);
      } catch (err) {
       console.log(err)
