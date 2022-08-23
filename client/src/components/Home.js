@@ -6,7 +6,7 @@ const Home = () =>{
 
     return (
         <div className='containter-fluid h1 p-5 text-center'>
-            Homepage {JSON.stringify(auth)}
+            Homepage1 {JSON.stringify(auth)}
         </div>
     )
 }
