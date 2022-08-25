@@ -6,7 +6,7 @@ import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 const SmallCard = ({
   h,
   handlePetDelete = (f) => f,
-  ơner = false,
+  owner = false,
   showViewMoreButton = true,
 }) => {
   const navigate = useNavigate();
