@@ -65,7 +65,7 @@ const deletePet = async (req, res) => {
 };
 
 const read = async (req, res) => {
-  let singlepet = await Pet.findById(req.params.pet)
+  let singlepet = await Pet.findById(req.params.petId)
     .select("-image.data")
     // .populate("postedBy", "_id name")
     .exec();
