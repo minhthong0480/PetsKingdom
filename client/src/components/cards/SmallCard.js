@@ -5,7 +5,7 @@ import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 // const SmallCard = ({h})=> <>{JSON.stringify(h)}</>
 const SmallCard = ({
   h,
-  handlePetDelete = (f) => f,
+  handleDeletePet = (f) => f,
   owner = false,
   showViewMoreButton = true,
 }) => {
@@ -51,7 +51,7 @@ const SmallCard = ({
                   <EditOutlined className="text-warning" />
                 </Link>
                 <DeleteOutlined
-                  onClick={() => handlePetDelete(h._id)}
+                  onClick={() => handleDeletePet(h._id)}
                   className="text-danger"
                 />
               </div>

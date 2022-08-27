@@ -1,25 +1,33 @@
 import { Fragment, useEffect, useState } from "react";
 import DashNav from "../components/DashNav";
 import { Link } from "react-router-dom";
-import { userPets } from "../action/pet";
+import { userPets, deletePet } from "../action/pet";
 import SmallCard from "../components/cards/SmallCard";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const UserDashboard = () => {
-  const [pets, setPets] = useState ([])
+  const [pets, setPets] = useState([]);
   const { auth } = useSelector((state) => ({ ...state }));
   const { token } = auth;
 
-    useEffect(()=>{
-        loadUserPets();
+  useEffect(() => {
+    loadUserPets();
+  }, []);
 
-    },[]);
+  const loadUserPets = async () => {
+    let res = await userPets(auth.token);
+    setPets(res.data);
+  };
+  // console.log(pets)
 
-    const loadUserPets = async () =>{
-        let res = await userPets(auth.token);
-        setPets(res.data);
-    }
-    // console.log(pets)
+  const handleDeletePet = async (petId) => {
+    if(!window.confirm('Do you want to delete this pet?')) return;
+    deletePet(auth.token, petId).then((res) => {
+      toast.success("Pet Deleted");
+      loadUserPets();
+    });
+  };
 
   return (
     <Fragment>
@@ -54,9 +62,13 @@ const UserDashboard = () => {
       <div className="container-fluid">
         <br />
         {/* <pre>{JSON.stringify(pets, null, 4)}</pre> */}
-        {pets.length > 0 && pets.map((h) => (
-          <SmallCard key={h._id} h={h}/>
-        ))}
+        {pets.length > 0 &&
+          pets.map((h) => (
+            <SmallCard 
+            key={h._id} 
+            h={h} 
+            handleDeletePet={handleDeletePet} />
+          ))}
       </div>
     </Fragment>
   );
