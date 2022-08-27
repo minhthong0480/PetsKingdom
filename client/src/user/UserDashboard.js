@@ -22,7 +22,7 @@ const UserDashboard = () => {
   // console.log(pets)
 
   const handleDeletePet = async (petId) => {
-    if(!window.confirm('Do you want to delete this pet?')) return;
+    if (!window.confirm("Do you want to delete this pet?")) return;
     deletePet(auth.token, petId).then((res) => {
       toast.success("Pet Deleted");
       loadUserPets();
@@ -64,10 +64,7 @@ const UserDashboard = () => {
         {/* <pre>{JSON.stringify(pets, null, 4)}</pre> */}
         {pets.length > 0 &&
           pets.map((h) => (
-            <SmallCard 
-            key={h._id} 
-            h={h} 
-            handleDeletePet={handleDeletePet} />
+            <SmallCard key={h._id} h={h} handleDeletePet={handleDeletePet} />
           ))}
       </div>
     </Fragment>

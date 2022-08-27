@@ -18,7 +18,7 @@ export const allPets = async (token) => await axios.get(`${process.env.REACT_APP
     }
 }) 
 
-export const deletePet = async (token, petId) => await axios.delete(`${process.env.REACT_APP_API}/delete-pet/${petId}`,{
+export const deletePet = async (token, petId) => await axios.delete(`${process.env.REACT_APP_API}/pets/delete-pet/${petId}`,{
     headers: {
         Authorization: `Bearer ${token}`,
     }

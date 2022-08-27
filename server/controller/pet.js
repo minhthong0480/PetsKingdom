@@ -32,13 +32,13 @@ const create = async (req, res)=>{
 }
 
 const pets = async (req, res) => {
-    let all = await Pet.find({postedBy: req.user})
+    let pets = await Pet.find({postedBy: req.user})
     .limit(24)
     .select('-image.data')
     .populate('postedBy', '_id name')
     .exec();
     //console.log(all)
-    res.json(all);
+    res.json(pets);
 }
 
 const allPets = async (req, res) => {
@@ -58,4 +58,9 @@ const image = async (req, res) => {
     }
 }
 
-module.exports = {create, pets,allPets, image}
+const deletePet = async(req, res)=>{
+    let removed = await Pet.findByIdAndDelete(req.params.petId).select('-image.data').exec();
+    res.json(removed);
+};
+
+module.exports = {create, pets,allPets, image, deletePet}
