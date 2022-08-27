@@ -12,10 +12,11 @@ import UserPet from './user/UserPet'
 import StaffDashboard from './staff/StaffDashboard'
 import StaffDashBooking from './staff/StaffDashBooking'
 import StaffBooking from './staff/StaffBooking'
+import EditPet from "./user/EditPet";
 
 //import dependencies
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PrivateRoute from "./components/PrivateRoute";
@@ -37,13 +38,14 @@ function App() {
 
         {/* code for private route */}
         <Route element={<PrivateRoute />}>
-          <Route exact path="user/dashboard" element={<UserDashboard />} />
-          <Route exact path="user/dashboard/booking" element={<UserDashbooking />} />
-          <Route exact path="user/booking" element={<UserBooking />} />
-          <Route exact path="/user/pet" element={<UserPet />} />
-          <Route exact path="staff/dashboard" element={<StaffDashboard />} />
-          <Route exact path="staff/dashboard/booking" element={<StaffDashBooking />} />
-          <Route exact path="staff/booking" element={<StaffBooking />} />
+          <Route exact path="/user/dashboard" element={<UserDashboard />} />
+          <Route exact path="/user/dashboard/booking" element={<UserDashbooking />} />
+          <Route exact path="/user/booking" element={<UserBooking />} />
+          <Route exact path="/user/create-pet" element={<UserPet />} />
+          <Route exact path="/staff/dashboard" element={<StaffDashboard />} />
+          <Route exact path="/staff/dashboard/booking" element={<StaffDashBooking />} />
+          <Route exact path="/staff/booking" element={<StaffBooking />} />
+          <Route exact path="/user/edit-pet/:petId" element={<EditPet />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -47,7 +47,7 @@ const SmallCard = ({
                 >
                   Show more
                 </button> */}
-                <Link to={`/pets/edit/${h._id}`}>
+                <Link to={`/user/edit-pet/${h._id}`}>
                   <EditOutlined className="text-warning" />
                 </Link>
                 <DeleteOutlined

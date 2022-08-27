@@ -1,25 +1,37 @@
-import axios from 'axios'
+import axios from "axios";
+// import { useParams } from "react-router-dom";
 
-export const createPet = async (token, data) => await axios.post(`${process.env.REACT_APP_API}/pets/create-pet`, data, {
-    headers: {
-        Authorization: `Bearer ${token}`,
-    }
-})
+// let params = useParams();
 
-export const userPets = async (token) => await axios.get(`${process.env.REACT_APP_API}/pets/pets`, {
-    headers: {
-        Authorization: `Bearer ${token}`,
-    }
-})
 
-export const allPets = async (token) => await axios.get(`${process.env.REACT_APP_API}/pets/allpets`, {
+export const createPet = async (token, data) =>
+  await axios.post(`${process.env.REACT_APP_API}/pets/create-pet`, data, {
     headers: {
-        Authorization: `Bearer ${token}`,
-    }
-}) 
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
-export const deletePet = async (token, petId) => await axios.delete(`${process.env.REACT_APP_API}/pets/delete-pet/${petId}`,{
+export const userPets = async (token) =>
+  await axios.get(`${process.env.REACT_APP_API}/pets/pets`, {
     headers: {
-        Authorization: `Bearer ${token}`,
-    }
-})
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+export const allPets = async (token) =>
+  await axios.get(`${process.env.REACT_APP_API}/pets/allpets`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+export const deletePet = async (token, petId) =>
+  await axios.delete(`${process.env.REACT_APP_API}/pets/delete-pet/${petId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  
+  export const read = async (petId) => {
+  await axios.get(`${process.env.REACT_APP_API}/pets/pet/${petId}`);
+};

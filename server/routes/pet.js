@@ -8,6 +8,7 @@ const {
   allPets,
   image,
   deletePet,
+  read,
 } = require("../controller/pet");
 
 router.post("/create-pet", formidable(), create);
@@ -15,5 +16,6 @@ router.get("/pets", verifiedToken, pets);
 router.get("/pet/image/:petId", image);
 router.get("/allpets", verifiedToken, allPets);
 router.delete("/delete-pet/:petId", verifiedToken, deletePet);
+router.get('/pet/:petId', read);
 
 module.exports = router;
