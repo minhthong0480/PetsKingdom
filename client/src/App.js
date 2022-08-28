@@ -3,7 +3,7 @@ import Login from "./auth/Login";
 import Home from "./components/Home";
 import Register from "./auth/Register";
 import Navbar from "./components/Navbar";
-import MyAccount from "./components/MyAccount";
+import MyAccount from "./user/MyAccount";
 import ForgotPassword from "./components/ForgotPassword";
 import UserDashboard from "./user/UserDashboard";
 import UserDashbooking from "./user/UserDashBooking";
@@ -16,7 +16,7 @@ import EditPet from "./user/EditPet";
 
 //import dependencies
 import React from "react";
-import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PrivateRoute from "./components/PrivateRoute";

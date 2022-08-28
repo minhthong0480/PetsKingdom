@@ -1,20 +1,18 @@
 import { Fragment, React, useState, useEffect } from "react";
 import { useParams, useMatch } from "react-router-dom";
 import { toast } from "react-toastify";
-import { DatePicker, Select } from "antd";
+import { Select } from "antd";
 import "antd/dist/antd.css";
-import { read } from "../action/pet";
+import { read, updatePet } from "../action/pet";
 import { useSelector } from "react-redux";
-import PetCreateForm from "../components/forms/PetCreateForm";
 import { useNavigate } from "react-router-dom";
+import PetEditForm from "../components/forms/PetEditForm";
 
 const { Option } = Select;
 
 const EditPet = ({}) => {
   const { auth } = useSelector((state) => ({ ...state }));
   const { token } = auth;
-
-  const navigate = useNavigate();
 
   const [values, setValues] = useState({
     ownername: "",
@@ -28,6 +26,8 @@ const EditPet = ({}) => {
   const [preview, setPreview] = useState(
     "https://via.placeholder.com/100x100.png?text=PREVIEW"
   );
+  const { ownername, petname, age, type, breed, note, image } = values;
+
   let match = useMatch("/user/edit-pet/:petId");
   const {petId} = useParams()
   //   console.log(petId)
@@ -40,11 +40,30 @@ const EditPet = ({}) => {
   const loadUserPet = async () => {
     let res = await read(petId, token);
     setValues({ ...values, ...res.data });
-    setPreview(`${process.env.REACT_APP_API}/pets/pet/image/res.data._id`);
+    setPreview(`${process.env.REACT_APP_API}/pets/pet/image/${petId}`);
   };
 
   const handleSubmit = async (e) => {
-    //
+    e.preventDefault()
+
+    let petData = new FormData()
+    petData.append('ownername', ownername)
+    petData.append("petname", petname);
+    petData.append("age", age);
+    petData.append("type", type);
+    petData.append("breed", breed);
+    petData.append("note", note);
+    petData.append("postedBy", auth.user._id);
+    image && petData.append("image", image);
+
+    try {
+        let res = await updatePet(token, petData, petId)
+        console.log('Pet Updated');
+        toast.success(`${res.data.petname} is updated`)
+    } catch (err) {
+        console.log(err);
+        toast.error(err.response.data.err)
+    }
   };
 
   const handleImageChange = (e) => {
@@ -66,7 +85,13 @@ const EditPet = ({}) => {
         <div className="row">
           <div className="col-md-10">
             <br />
-            show edit form
+            <PetEditForm 
+                values={values}
+                setValues={setValues}
+                handleChange={handleChange}
+                handleImageChange={handleImageChange}
+                handleSubmit={handleSubmit}
+              />
           </div>
           <div className="col-md-2">
             <img

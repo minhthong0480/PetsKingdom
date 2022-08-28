@@ -73,4 +73,6 @@ const read = async (req, res) => {
   res.json(singlepet);
 };
 
+
+
 module.exports = { create, pets, allPets, image, deletePet, read };
