@@ -73,6 +73,29 @@ const read = async (req, res) => {
   res.json(singlepet);
 };
 
+const update = async (req, res) => {
+  try {
+    let fields = req.fields;
+    let files = req.files;
 
+    let data = { ...fields, ...files };
 
-module.exports = { create, pets, allPets, image, deletePet, read };
+    if (files.image) {
+      let image = {};
+      image.data = fs.readFileSync(files.image.path);
+      image.contentType = files.image.type;
+
+      data.image = image;
+    }
+
+    let updated = await Pet.findByIdAndUpdate(req.params.petId, data, {
+      new: true,
+    }).select('-image.data');
+    res.json(updated)
+  } catch (error) {
+    console.log(error);
+    res.status(400).send("Pet Update Failed");
+  }
+};
+
+module.exports = { create, pets, allPets, image, deletePet, read, update };

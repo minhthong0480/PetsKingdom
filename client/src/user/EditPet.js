@@ -11,9 +11,11 @@ import PetEditForm from "../components/forms/PetEditForm";
 const { Option } = Select;
 
 const EditPet = ({}) => {
+    //redux
   const { auth } = useSelector((state) => ({ ...state }));
   const { token } = auth;
-
+//
+const navigate = useNavigate();
   const [values, setValues] = useState({
     ownername: "",
     petname: "",
@@ -21,27 +23,29 @@ const EditPet = ({}) => {
     type: "",
     breed: "",
     note: "",
-    image: "",
   });
   const [preview, setPreview] = useState(
     "https://via.placeholder.com/100x100.png?text=PREVIEW"
   );
-  const { ownername, petname, age, type, breed, note, image } = values;
+  const { ownername, petname, age, type, breed, note } = values;
+
+  const [image, setImage] = useState('')
 
   let match = useMatch("/user/edit-pet/:petId");
   const {petId} = useParams()
   //   console.log(petId)
+  
+  const loadUserPet = async () => {
+    let res = await read(petId, token);
+    setValues({ ...values, ...res.data });
+    setPreview(`${process.env.REACT_APP_API}/pets/pet/image/${petId}`);
+  };
 
   useEffect(() => {
     // console.log(match.params);
     loadUserPet();
   }, []);
 
-  const loadUserPet = async () => {
-    let res = await read(petId, token);
-    setValues({ ...values, ...res.data });
-    setPreview(`${process.env.REACT_APP_API}/pets/pet/image/${petId}`);
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -58,18 +62,25 @@ const EditPet = ({}) => {
 
     try {
         let res = await updatePet(token, petData, petId)
-        console.log('Pet Updated');
+        console.log('Pet Updated',res);
         toast.success(`${res.data.petname} is updated`)
+        setTimeout(() => {
+            // loadUserPet();
+            navigate('/user/dashboard')
+            window.location.reload();
+          }, 3000);
+        
     } catch (err) {
         console.log(err);
         toast.error(err.response.data.err)
     }
+    
   };
 
   const handleImageChange = (e) => {
     // console.log(e.target.files[0]);
     setPreview(URL.createObjectURL(e.target.files[0]));
-    setValues({ ...values, image: e.target.files[0] });
+    setImage(e.target.files[0]);
   };
 
   const handleChange = (e) => {
@@ -99,7 +110,7 @@ const EditPet = ({}) => {
               alt="preview_image"
               className="img img-fluid m-2"
             />
-            <pre>{JSON.stringify(values, null, 4)}</pre>
+            {/* <pre>{JSON.stringify(values, null, 4)}</pre> */}
           </div>
         </div>
       </div>

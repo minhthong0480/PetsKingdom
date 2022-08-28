@@ -33,6 +33,7 @@ const PetEditForm = (props) => {
             <input
               type="file"
               name="image"
+              defaultValue={image}
               onChange={handleImageChange}
               accept="image/*"
               hidden

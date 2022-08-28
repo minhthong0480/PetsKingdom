@@ -38,8 +38,13 @@ export const read = async (petId, token) =>
     },
   });
 
-  export const updatePet = async (token, data, petId)=> await axios.put(`${process.env.REACT_APP_API}/update-hotel/${petId}`, data,{
-    header:{
-      Authorization: `Bearer ${token}`,
-    },
-  });
+export const updatePet = async (token, data, petId) =>
+  await axios.put(
+    `${process.env.REACT_APP_API}/pets/update-pet/${petId}`,
+    data,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
