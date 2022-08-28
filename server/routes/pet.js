@@ -16,6 +16,6 @@ router.get("/pets", verifiedToken, pets);
 router.get("/pet/image/:petId", image);
 router.get("/allpets", verifiedToken, allPets);
 router.delete("/delete-pet/:petId", verifiedToken, deletePet);
-router.get('/pet/:petId', read);
+router.get('/pet/:petId', verifiedToken, read);
 
 module.exports = router;

@@ -3,7 +3,6 @@ import axios from "axios";
 
 // let params = useParams();
 
-
 export const createPet = async (token, data) =>
   await axios.post(`${process.env.REACT_APP_API}/pets/create-pet`, data, {
     headers: {
@@ -31,7 +30,10 @@ export const deletePet = async (token, petId) =>
       Authorization: `Bearer ${token}`,
     },
   });
-  
-  export const read = async (petId) => {
-  await axios.get(`${process.env.REACT_APP_API}/pets/pet/${petId}`);
-};
+
+export const read = async (petId, token) =>
+  await axios.get(`${process.env.REACT_APP_API}/pets/pet/${petId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });

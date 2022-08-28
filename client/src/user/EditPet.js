@@ -24,25 +24,21 @@ const EditPet = ({}) => {
     breed: "",
     note: "",
     image: "",
-    from: "",
-    to: "",
   });
   const [preview, setPreview] = useState(
     "https://via.placeholder.com/100x100.png?text=PREVIEW"
   );
   let match = useMatch("/user/edit-pet/:petId");
-  //   console.log(params)
-//   let params = useParams();
+  const {petId} = useParams()
+  //   console.log(petId)
 
   useEffect(() => {
-    // console.log(params);
     // console.log(match.params);
     loadUserPet();
   }, []);
 
   const loadUserPet = async () => {
-    let res = await read(match);
-    // console.log(res);
+    let res = await read(petId, token);
     setValues({ ...values, ...res.data });
     setPreview(`${process.env.REACT_APP_API}/pets/pet/image/res.data._id`);
   };
