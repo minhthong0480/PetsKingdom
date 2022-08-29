@@ -1,8 +1,25 @@
 import { Fragment } from "react";
+import {useState, useEffect} from 'react'
 import DashNav from "../components/DashNav";
 import { Link } from "react-router-dom";
+import BookingSmallCard from "../components/cards/BookingSmallCard";
+import { useSelector } from "react-redux";
+import { userBookings } from "../action/booking";
 
 const UserDashBooking = () => {
+  // const [booking, setBooking] = useState ([])
+  // const { auth } = useSelector((state) => ({ ...state }));
+  // const { token } = auth;
+
+  //   useEffect(()=>{
+  //       loadUserBooking();
+
+  //   },[]);
+
+  //   const loadUserBooking = async () =>{
+  //       let res = await userBookings(auth.token);
+  //       setBooking(res.data);
+  //   }
   return (
     <Fragment>
       <div className="container-fluid bg-secondary p-5 text-center">
@@ -22,6 +39,12 @@ const UserDashBooking = () => {
             </Link>
           </div>
         </div>
+
+        {/* <div className="row">
+          {booking.map((h)=>(
+            <BookingSmallCard key={h._id} h={h} />
+          ))}
+        </div> */}
       </div>
     </Fragment>
   );

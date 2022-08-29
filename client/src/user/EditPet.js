@@ -1,42 +1,56 @@
-import { Fragment, React, useState } from "react";
+import { Fragment, React, useState, useEffect } from "react";
+import { useParams, useMatch } from "react-router-dom";
 import { toast } from "react-toastify";
-import { DatePicker, Select } from "antd";
+import { Select } from "antd";
 import "antd/dist/antd.css";
-import { createPet } from "../action/pet";
-import {  useSelector } from "react-redux";
-import PetCreateForm from "../components/forms/PetCreateForm";
+import { read, updatePet } from "../action/pet";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import PetEditForm from "../components/forms/PetEditForm";
 
-const UserPet = () => {
+const { Option } = Select;
+
+const EditPet = ({}) => {
+    //redux
   const { auth } = useSelector((state) => ({ ...state }));
   const { token } = auth;
-
-  const { Option } = Select;
-  const navigate = useNavigate();
-
+//
+const navigate = useNavigate();
   const [values, setValues] = useState({
-    ownername:'',
+    ownername: "",
     petname: "",
     age: "",
     type: "",
     breed: "",
     note: "",
-    image: "",
-    from: "",
-    to: "",
   });
-
   const [preview, setPreview] = useState(
     "https://via.placeholder.com/100x100.png?text=PREVIEW"
   );
-  //destructing variable from state
-  const { ownername, petname, age, type, breed, note, image } = values;
-  // const dispatch = useDispatch();
+  const { ownername, petname, age, type, breed, note } = values;
+
+  const [image, setImage] = useState('')
+
+  let match = useMatch("/user/edit-pet/:petId");
+  const {petId} = useParams()
+  //   console.log(petId)
+  
+  const loadUserPet = async () => {
+    let res = await read(petId, token);
+    setValues({ ...values, ...res.data });
+    setPreview(`${process.env.REACT_APP_API}/pets/pet/image/${petId}`);
+  };
+
+  useEffect(() => {
+    // console.log(match.params);
+    loadUserPet();
+  }, []);
+
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    let petData = new FormData();
+    let petData = new FormData()
     petData.append('ownername', ownername)
     petData.append("petname", petname);
     petData.append("age", age);
@@ -46,54 +60,56 @@ const UserPet = () => {
     petData.append("postedBy", auth.user._id);
     image && petData.append("image", image);
 
-    console.log([...petData]);
-
-     //dispatch(createPet(token, petData));
-     try {
-      let res = await createPet(token, petData)
-    console.log("PET CREATE RES", res);
-    toast.success("New Pet added");
-    setTimeout(() => {
-      //window.location.reload();
-      navigate('/user/dashboard')
-    }, 3000);
-     } catch (err) {
-      console.log(err)
-      toast.error(err.response.data)
-     }
+    try {
+        let res = await updatePet(token, petData, petId)
+        console.log('Pet Updated',res);
+        toast.success(`${res.data.petname} is updated`)
+        setTimeout(() => {
+            // loadUserPet();
+            navigate('/user/dashboard')
+            window.location.reload();
+          }, 3000);
+        
+    } catch (err) {
+        console.log(err);
+        toast.error(err.response.data.err)
+    }
+    
   };
 
   const handleImageChange = (e) => {
     // console.log(e.target.files[0]);
     setPreview(URL.createObjectURL(e.target.files[0]));
-    setValues({ ...values, image: e.target.files[0] });
+    setImage(e.target.files[0]);
   };
 
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
-
   return (
     <Fragment>
       <div className="container-fluid bg-secondary p-5 text-center">
-        <h2>Add Pet</h2>
+        <h2>Edit User Pet</h2>
       </div>
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-10">
             <br />
-              <PetCreateForm 
+            <PetEditForm 
                 values={values}
                 setValues={setValues}
                 handleChange={handleChange}
                 handleImageChange={handleImageChange}
                 handleSubmit={handleSubmit}
-
               />
           </div>
           <div className="col-md-2">
-            <img src={preview} alt="preview_image" className="img-fluid m-2" />
+            <img
+              src={preview}
+              alt="preview_image"
+              className="img img-fluid m-2"
+            />
             {/* <pre>{JSON.stringify(values, null, 4)}</pre> */}
           </div>
         </div>
@@ -102,4 +118,4 @@ const UserPet = () => {
   );
 };
 
-export default UserPet;
+export default EditPet;

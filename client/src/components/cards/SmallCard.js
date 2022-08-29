@@ -5,8 +5,8 @@ import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 // const SmallCard = ({h})=> <>{JSON.stringify(h)}</>
 const SmallCard = ({
   h,
-  handlePetDelete = (f) => f,
-  ơner = false,
+  handleDeletePet = (f) => f,
+  owner = false,
   showViewMoreButton = true,
 }) => {
   const navigate = useNavigate();
@@ -41,17 +41,17 @@ const SmallCard = ({
               <p className="card-text">Breed: {h.breed}</p>
 
               <div className="d-flex justify-content-between h4">
-                <button
+                {/* <button
                   onClick={() => navigate(`/pets/${h._id}`)}
                   className="btn btn-primary"
                 >
                   Show more
-                </button>
-                <Link to={`/hotel/edit/${h._id}`}>
+                </button> */}
+                <Link to={`/user/edit-pet/${h._id}`}>
                   <EditOutlined className="text-warning" />
                 </Link>
                 <DeleteOutlined
-                  onClick={() => handlePetDelete(h._id)}
+                  onClick={() => handleDeletePet(h._id)}
                   className="text-danger"
                 />
               </div>

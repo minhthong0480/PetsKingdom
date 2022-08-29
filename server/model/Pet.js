@@ -5,6 +5,10 @@ var { ObjectId } = require('mongodb').ObjectId
 
 const petSchema = new Schema(
   {
+    // _id:{
+    //   type: Schema.Types.ObjectId,
+    // },
+
     ownername:{
       type: String,
       required: "owner name is required",
