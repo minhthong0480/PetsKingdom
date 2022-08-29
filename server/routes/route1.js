@@ -40,10 +40,11 @@ route.post('/forgot-password', (req, res, next) => {
         name: user.name
     }
     const token = jwt.sign(payload, secure, {expiresIn: '15m'});
-    mailer.sendMail(user.email, "Reset password", `<a href="${process.env.APP_URL}/reset-password/${user.name}/${token}}"> Reset Password </a>`)
+    mailer.sendMail(user.email, "Reset password", `<a href="${process.env.APP_URL}/reset-password/${user.name}/${token}"> Reset Password </a>`)
     const link = `http://localhost:4000/reset-password/${user.name}/${token}`
     console.log(link);
     res.send('link has been sent to your email');
+    
 });
 
 
