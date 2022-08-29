@@ -6,6 +6,7 @@ const cors = require('cors')
 
 
 //import route
+const Froute = require('./routes/route1');
 const authRoute = require("./routes/auth");
 const postRoute = require("./routes/posts");
 //const petRoute = require("./routes/pet");
@@ -14,6 +15,10 @@ const updateUserProfile = require ("./controller/auth");
 dotenv.config();
 
 
+app.use(express.urlencoded({extended: false}));
+app.set('view engine', 'ejs');
+app.set('views', 'views');
+ 
 //Connect DB
 mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true }, () =>
   console.log("DB connected")
@@ -33,5 +38,6 @@ app.use("/api/", authRoute);
 //app.use("/api/pets", petRoute)
 //app.route("/profile").post(updateUserProfile);
 //app.use('api/staff', staffRoute)
+app.use('/', Froute)
 
 app.listen(4000, () => console.log("Server is Up and Running"));

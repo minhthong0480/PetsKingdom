@@ -1,19 +1,19 @@
 const { application } = require('express');
 const express = require('express');
 const jwt = require('jsonwebtoken');
-const { User } = require("../model/User");
-//const Token = require("../model/token");
-const {forgotValid} = require('../validation')
-const Joi = require("joi");
-const mailer = require('../mail/mail');
 const route = require('express').Router()
+const mailer = require('../mail/mail');
 
-
-// let user = {
-//     name: "abc",
-//     email: "nguyenhieuducduy1@gmail.com",
-//     password: "1234"
-// }
+// route.use(express.json());
+// route.use(express.urlencoded({extended: false}));
+// route.set('view engine', 'ejs');
+// route.set('views', 'views');
+ 
+let user = {
+    name: "abc",
+    email: "nguyenhieuducduy1@gmail.com",
+    password: "1234"
+}
 
 
 route.get('/forgot-password', (req, res, next) => {
@@ -23,33 +23,25 @@ route.get('/forgot-password', (req, res, next) => {
 
 
 
-route.post('/forgot-password', async (req, res, next) => {
+route.post('/forgot-password', (req, res, next) => {
     const {email} = req.body;
-    
-    const emailSchema = Joi.object({
-        email: Joi.string() .min(6) .required() .email(),
-    });
-    const {error} = forgotValid(req.body);
-     if(error) return res.status(400).send(error.details[0].message)
-//     const { error } = emailSchema.forgotValid(req.body);
-//     if (error){
-//         return res.status(400).send({ message: error.details[0].message });
-//     }
 
     //check wheter the account is valid
-    const user = await User.findOne({email: req.body.email});
-    if(!user){return res.status(400).send('Email has not registered')}
+    if(email !== user.email){
+        res.send('Invalid email');
+        return;
+    }
 
     //user exists and create the one time link availabe for 15mins
-    const JWT_THING = 'DON"T UNDERSTAND';
+    const JWT_THING = 'for file dotenv';
     const secure = JWT_THING + user.password;
     const payload = {
         email: user.email,
         name: user.name
     }
-    const token = jwt.sign(payload, secure, {expiresIn: '59m'});
-    mailer.sendMail(user.email, "Reset password", `<a href="${process.env.APP_URL}/rest-password/${user.name}/${token}}"> Reset Password </a>`)
-    const link = `${process.env.APP_URL}/reset-password/${user.name}/${token}`
+    const token = jwt.sign(payload, secure, {expiresIn: '15m'});
+    mailer.sendMail(user.email, "Reset password", `<a href="${process.env.APP_URL}/reset-password/${user.name}/${token}}"> Reset Password </a>`)
+    const link = `http://localhost:4000/reset-password/${user.name}/${token}`
     console.log(link);
     res.send('link has been sent to your email');
 });

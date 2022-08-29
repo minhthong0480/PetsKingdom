@@ -67,7 +67,8 @@ const login = async (req, res) => {
   //res.send('Logged In')
 };
 const updateUserProfile = async (req, res) => {
-    const user = await User.findById(req.user._id);
+    const id = req.query.id;
+    const user = await User.findById({ _id:id });
   
     if (user) {
       user.name = req.body.name || user.name;
