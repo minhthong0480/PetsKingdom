@@ -4,22 +4,32 @@ import DashNav from "../components/DashNav";
 import { Link } from "react-router-dom";
 import BookingSmallCard from "../components/cards/BookingSmallCard";
 import { useSelector } from "react-redux";
-import { userBookings } from "../action/booking";
+import { deleteBooking, userBookings } from "../action/booking";
+import {toast} from 'react-toastify'
+
 
 const UserDashBooking = () => {
-  // const [booking, setBooking] = useState ([])
-  // const { auth } = useSelector((state) => ({ ...state }));
-  // const { token } = auth;
+  const [booking, setBooking] = useState ([])
+  const { auth } = useSelector((state) => ({ ...state }));
+  const { token } = auth;
 
-  //   useEffect(()=>{
-  //       loadUserBooking();
+    useEffect(()=>{
+        loadUserBooking();
 
-  //   },[]);
+    },[]);
 
-  //   const loadUserBooking = async () =>{
-  //       let res = await userBookings(auth.token);
-  //       setBooking(res.data);
-  //   }
+    const loadUserBooking = async () =>{
+        let res = await userBookings(token);
+        setBooking(res.data);
+    }
+
+  const handleDeleteBooking = async (bookingId) => {
+    if (!window.confirm("Do you want to delete this booing?")) return;
+    deleteBooking(token, bookingId).then((res) => {
+      toast.success("Booking Deleted");
+      loadUserBooking();
+    });
+  };
   return (
     <Fragment>
       <div className="container-fluid bg-secondary p-5 text-center">
@@ -33,18 +43,18 @@ const UserDashBooking = () => {
           <div className="col-md-10">
             <h2> Your Booking</h2>
           </div>
+        </div>
           <div className="col-md-2">
             <Link to="/user/booking" className="btn btn-primary">
               + Add New
             </Link>
           </div>
-        </div>
 
-        {/* <div className="row">
+        <div className="row">
           {booking.map((h)=>(
-            <BookingSmallCard key={h._id} h={h} />
+            <BookingSmallCard key={h._id} h={h} handleDeleteBooking={handleDeleteBooking}/>
           ))}
-        </div> */}
+        </div>
       </div>
     </Fragment>
   );

@@ -3,21 +3,62 @@ import { DatePicker, Select } from "antd";
 import "antd/dist/antd.css";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
+import {toast} from 'react-toastify'
+import { userBookings, createBooking } from "../../action/booking";
+import {useNavigate} from "react-router-dom"
 
-const UserBookingForm = (props, note,date, setNote, setDate, handleChange, handleChangeDate, handleChangeNote, handleSubmit, disabledDate) => {
-  // const {  date, note, setNote, handleChange, disabledDate, handleSubmit } =
-  //   props;
+
+
+const UserBookingForm = (props) => {
+  const { pets, disabledDate } =
+    props;
   // const [pets, setPets] = useState([]);
-  // const [note, setNote] = useState([]);
-  // const [date, setDate] = useState([]);
+  const [note, setNote] = useState([]);
+  const [date, setDate] = useState([]);
+  const [petId, setPetId] = useState('');
   const { auth } = useSelector((state) => ({ ...state }));
   const { token } = auth;
   const { Option } = Select;
-  // console.log(props);
 
   //deconstruct props
-  const {pets} = props
+  // const {pets} = props
   console.log(props);
+
+ const navigate = useNavigate()
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    let bookingData = new FormData()
+    bookingData.append('pets', petId)
+    bookingData.append("note", note);
+    bookingData.append("date", date);
+    bookingData.append("postedBy", auth.user._id);
+    console.log(e);
+
+    console.log([...bookingData]);
+    
+    try {
+      let res = await createBooking(token, bookingData)
+      console.log("Booking Created", res);
+      toast.success(`New Booking Added`)
+      setTimeout(() => {
+        navigate("/user/dashboard/booking");
+      }, 4000);
+    } catch (err) {
+      console.log(err)
+      toast.error(err.response.data)
+    }
+  };
+
+  const handleChangeNote = (e) => {
+    setNote(e.target.value);
+  };
+
+  const handleChangeDate = (e) => {
+    setDate(e.target.value)
+  }
+
+
 
   const { RangePicker } = DatePicker;
   return (
@@ -29,31 +70,34 @@ const UserBookingForm = (props, note,date, setNote, setDate, handleChange, handl
             size="large"
             name='pets'
             placeholder="Choose Pet from your Collection"
-            // onChange={(value) => setValues({ ...values, type: value })}
-            value={pets}
+            onChange={(values) => setPetId(values)}
+            //value={pets}
           >
             {pets.map((pet) => (
               <Option key={pet._id} value={pet._id}>{pet.petname}</Option>
             ))}
           </Select>
+
           <textarea
             type="content"
             name="note"
-            onChange={handleChange}
+            onChange={handleChangeNote}
             placeholder="Leave a note for Staff"
             className="form-control "
             values={note}
           />
-          <div className="ml-4">
+
+          {/* <div className="ml-4">
             <label> Date (From - To)</label>
           </div>
           <RangePicker
+          
             className="form-control m-2"
             name='date'
-            onChange={(date, dateString) => console.log(date,dateString)}
+            onChange={(values) => console.log(values)}
             disabledDate={disabledDate}
             values={date}
-          />
+          /> */}
 
           <br />
           <button className="btn btn-outline-primary m-2">Book</button>

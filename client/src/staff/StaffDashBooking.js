@@ -1,8 +1,29 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import StaffDashNav from "../components/StaffDashNav";
 import { Link } from "react-router-dom";
+import { allBookings, approveBooking } from "../action/booking";
+import BookingSmallCard from '../components/cards/BookingSmallCard'
+import {toast} from 'react-toastify' 
 
 const UserDashBooking = () => {
+
+  const [booking,setBooking] = useState([])
+  useEffect(()=>{
+    loadUserBooking();
+
+},[]);
+
+const loadUserBooking = async () =>{
+    let res = await allBookings();
+    setBooking(res.data);
+}
+const handleApproved = async (bookingId) => {
+  if (!window.confirm("Do you want to approved this booing?")) return;
+  approveBooking(bookingId).then((res) => {
+    toast.success("Booking Approved");
+    loadUserBooking();
+  });
+};
   return (
     <Fragment>
       <div className="container-fluid bg-secondary p-5 text-center">
@@ -16,11 +37,18 @@ const UserDashBooking = () => {
           <div className="col-md-10">
             <h2>Booking Invoice</h2>
           </div>
+        
           <div className="col-md-2">
             <Link to="/user/booking" className="btn btn-primary">
               + Add New
             </Link>
           </div>
+          <div className="container-fluid">
+        <br />
+          {booking.map((h)=>(
+            <BookingSmallCard key={h._id} h={h} handleApproved={handleApproved}/>
+          ))}
+        </div>
         </div>
       </div>
     </Fragment>

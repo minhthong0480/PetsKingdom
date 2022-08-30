@@ -2,12 +2,14 @@ import moment from "moment";
 import React, { Fragment, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { userBookings, createBooking } from "../action/booking";
+
 import { DatePicker, Select } from "antd";
 import {toast} from 'react-toastify'
 import UserBookingForm from "../components/forms/UserBookingForm";
 import { useNavigate } from "react-router-dom";
+import { userPets } from "../action/pet";
 
-function Userbooking() {
+const Userbooking=() =>{
   const [pets, setPets] = useState([]);
   const [note, setNote] = useState([])
   const [date, setDate] = useState([])
@@ -33,37 +35,38 @@ function Userbooking() {
   // const {auth} = useSelector((state) => ({...state}))
 
   const loadBooking = async () => {
-    let res = await userBookings(auth.token);
+    let res = await userPets(token);
     // setValues({...values, ...res.data});
-    setPets(pets)
+    setPets(res.data)
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    let bookingData = new FormData()
-    bookingData.append('pets', pets)
-    bookingData.append("note", note);
-    bookingData.append("date", date);
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   let bookingData = new FormData()
+  //   bookingData.append('pets', pets)
+  //   bookingData.append("note", note);
+  //   bookingData.append("date", date);
+  //   bookingData.append("postedBy", auth.user._id);
 
-    console.log([...bookingData]);
+  //   console.log([...bookingData]);
     
-    try {
-      let res = await createBooking(token, bookingData)
-      console.log("Booking Created", res);
-      toast.success(`New Booking Added`)
-    } catch (err) {
-      console.log(err)
-      toast.error(err.response.data)
-    }
-  };
+  //   try {
+  //     let res = await createBooking(token, bookingData)
+  //     console.log("Booking Created", res);
+  //     toast.success(`New Booking Added`)
+  //   } catch (err) {
+  //     console.log(err)
+  //     toast.error(err.response.data)
+  //   }
+  // };
 
-  const handleChangeNote = (e) => {
-    setNote(e.target.value);
-  };
+  // const handleChangeNote = (e) => {
+  //   setNote(e.target.value);
+  // };
 
-  const handleChangeDate = (e) => {
-    setDate(e.target.value)
-  }
+  // const handleChangeDate = (e) => {
+  //   setDate(e.target.value)
+  // }
 
   return (
     <Fragment>
@@ -82,9 +85,9 @@ function Userbooking() {
               setNote={setNote}
               setDate={setDate}
               disabledDate={disabledDate}
-              handleChangeNote={handleChangeNote}
-              handleChangeDate={handleChangeDate}
-              handleSubmit={handleSubmit}
+              // handleChangeNote={handleChangeNote}
+              // handleChangeDate={handleChangeDate}
+              // handleSubmit={handleSubmit}
             />
             <pre>{JSON.stringify(pets,note,date, null, 4)}</pre>
           </div>

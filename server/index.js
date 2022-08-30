@@ -10,6 +10,7 @@ const authRoute = require("./routes/auth");
 const petRoute = require("./routes/pet");
 const staffRoute = require("./routes/staff");
 // const forgotRoute = require("./routes/forgot");
+const bookingRoute = require("./routes/booking")
 
 dotenv.config();
 
@@ -35,6 +36,8 @@ app.use("/api/", authRoute);
 app.use("/api/pets", petRoute);
 
 app.use("/api/staff", staffRoute);
+
+app.use("/api/bookings", bookingRoute)
 
 // app.use("/api/", forgotRoute);
 
