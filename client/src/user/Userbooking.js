@@ -1,19 +1,25 @@
 import moment from "moment";
 import React, { Fragment, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { userPets } from "../action/pet";
+import { userBookings, createBooking } from "../action/booking";
 import { DatePicker, Select } from "antd";
+import {toast} from 'react-toastify'
 import UserBookingForm from "../components/forms/UserBookingForm";
 import { useNavigate } from "react-router-dom";
 
 function Userbooking() {
   const [pets, setPets] = useState([]);
+  const [note, setNote] = useState([])
+  const [date, setDate] = useState([])
+  // const [values, setValues] = useState({
+    
+  //   note: "",
+  //   date: "",
+  // });
+
+
   const { auth } = useSelector((state) => ({ ...state }));
   const { token } = auth;
-  const { Option } = Select;
-  const navigate = useNavigate();
-
-  const { RangePicker } = DatePicker;
 
   const disabledDate = (current) => {
     // Can not select days before today and today
@@ -21,15 +27,43 @@ function Userbooking() {
   };
 
   useEffect(() => {
-    loadAllPets();
+    loadBooking();
   }, []);
 
   // const {auth} = useSelector((state) => ({...state}))
 
-  const loadAllPets = async () => {
-    let res = await userPets(auth.token);
-    setPets(res.data);
+  const loadBooking = async () => {
+    let res = await userBookings(auth.token);
+    // setValues({...values, ...res.data});
+    setPets(pets)
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    let bookingData = new FormData()
+    bookingData.append('pets', pets)
+    bookingData.append("note", note);
+    bookingData.append("date", date);
+
+    console.log([...bookingData]);
+    
+    try {
+      let res = await createBooking(token, bookingData)
+      console.log("Booking Created", res);
+      toast.success(`New Booking Added`)
+    } catch (err) {
+      console.log(err)
+      toast.error(err.response.data)
+    }
+  };
+
+  const handleChangeNote = (e) => {
+    setNote(e.target.value);
+  };
+
+  const handleChangeDate = (e) => {
+    setDate(e.target.value)
+  }
 
   return (
     <Fragment>
@@ -40,7 +74,19 @@ function Userbooking() {
         <div className="row">
           <div className="col-md-10">
             <br />
-            {UserBookingForm()}
+            <UserBookingForm
+              pets={pets}
+              note={note}
+              date={date}
+              setPets={setPets}
+              setNote={setNote}
+              setDate={setDate}
+              disabledDate={disabledDate}
+              handleChangeNote={handleChangeNote}
+              handleChangeDate={handleChangeDate}
+              handleSubmit={handleSubmit}
+            />
+            <pre>{JSON.stringify(pets,note,date, null, 4)}</pre>
           </div>
         </div>
       </div>

@@ -35,6 +35,7 @@ function App() {
         <Route exact path="/myaccount" element={<MyAccount />} />
         <Route exact path="/register" element={<Register />} />
         <Route exact path="/forgot-password" element={<ForgotPassword />} />
+        {/* <Route exact path="/reset-password" element={<ForgotPassword />} /> */}
 
         {/* code for private route */}
         <Route element={<PrivateRoute />}>
