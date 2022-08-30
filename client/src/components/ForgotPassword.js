@@ -1,7 +1,7 @@
 import { Fragment, React, useState } from "react";
 
 function ForgotPassword() {
-  const [email, setEmail] = useState("thong@gmail.com");
+  const [email, setEmail] = useState("");
   return (
     <Fragment>
       <div className="containter h1 bg-secondary p-5 text-center">
@@ -23,7 +23,7 @@ function ForgotPassword() {
                 />
               </div>
 
-              <button disabled={!email} className="btn btn-primary mb-2">
+              <button className="btn btn-primary mb-2">
                 Reset
               </button>
               <br />
