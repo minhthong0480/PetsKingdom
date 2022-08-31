@@ -22,7 +22,7 @@ const UserDashBooking = () => {
   };
 
   const handleDeleteBooking = async (bookingId) => {
-    if (!window.confirm("Do you want to delete this booing?")) return;
+    if (!window.confirm("Do you want to delete this booking?")) return;
     deleteBooking(token, bookingId).then((res) => {
       toast.success("Booking Deleted");
       loadUserBooking();
