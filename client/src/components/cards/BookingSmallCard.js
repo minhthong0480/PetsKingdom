@@ -9,9 +9,8 @@ const BookingSmallCard = ({
 
   handleApproved = (f) => f,
 }) => {
-  const isStaff = useMatch("/staff/dashboard/booking")
+  const isStaff = useMatch("/staff/dashboard/booking");
   const navigate = useNavigate();
-  
 
   return (
     <Fragment>
@@ -39,7 +38,9 @@ const BookingSmallCard = ({
               <p className="alert alert-info">
                 Note: {`${h.note.substring(1, 200)}...`}
               </p>
-              <div className="">Status: {h.isApproved ? <p>Approved</p> : <p>Queuing</p>}</div>
+              <div className="">
+                Status: {h.isApproved ? <p>Approved</p> : <p>Queuing</p>}
+              </div>
               {/* <p className="card-text">Type: {h.type}</p>
               <p className="card-text">Age: {h.age}</p>
               <p className="card-text">Breed: {h.breed}</p> */}
@@ -51,9 +52,12 @@ const BookingSmallCard = ({
                 >
                   Show more
                 </button>
-                {isStaff && 
-                  <EditOutlined className="text-warning" onClick={() => handleApproved(h._id)}/>
-                }
+                {isStaff && (
+                  <EditOutlined
+                    className="text-warning"
+                    onClick={() => handleApproved(h._id)}
+                  />
+                )}
                 <DeleteOutlined
                   onClick={() => handleDeleteBooking(h._id)}
                   className="text-danger"

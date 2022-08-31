@@ -1,27 +1,25 @@
 import { Fragment } from "react";
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from "react";
 import DashNav from "../components/DashNav";
 import { Link } from "react-router-dom";
 import BookingSmallCard from "../components/cards/BookingSmallCard";
 import { useSelector } from "react-redux";
 import { deleteBooking, userBookings } from "../action/booking";
-import {toast} from 'react-toastify'
-
+import { toast } from "react-toastify";
 
 const UserDashBooking = () => {
-  const [booking, setBooking] = useState ([])
+  const [booking, setBooking] = useState([]);
   const { auth } = useSelector((state) => ({ ...state }));
   const { token } = auth;
 
-    useEffect(()=>{
-        loadUserBooking();
+  useEffect(() => {
+    loadUserBooking();
+  }, []);
 
-    },[]);
-
-    const loadUserBooking = async () =>{
-        let res = await userBookings(token);
-        setBooking(res.data);
-    }
+  const loadUserBooking = async () => {
+    let res = await userBookings(token);
+    setBooking(res.data);
+  };
 
   const handleDeleteBooking = async (bookingId) => {
     if (!window.confirm("Do you want to delete this booing?")) return;
@@ -44,15 +42,19 @@ const UserDashBooking = () => {
             <h2> Your Booking</h2>
           </div>
         </div>
-          <div className="col-md-2">
-            <Link to="/user/booking" className="btn btn-primary">
-              + Add New
-            </Link>
-          </div>
+        <div className="col-md-2">
+          <Link to="/user/booking" className="btn btn-primary">
+            + Add New
+          </Link>
+        </div>
 
         <div className="row">
-          {booking.map((h)=>(
-            <BookingSmallCard key={h._id} h={h} handleDeleteBooking={handleDeleteBooking}/>
+          {booking.map((h) => (
+            <BookingSmallCard
+              key={h._id}
+              h={h}
+              handleDeleteBooking={handleDeleteBooking}
+            />
           ))}
         </div>
       </div>
