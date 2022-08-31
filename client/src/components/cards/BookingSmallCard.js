@@ -3,14 +3,14 @@ import { useNavigate, Link, useMatch } from "react-router-dom";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
 // const SmallCard = ({h})=> <>{JSON.stringify(h)}</>
-const SmallCard = ({
+const BookingSmallCard = ({
   h,
   handleDeleteBooking = (f) => f,
 
   handleApproved = (f) => f,
 }) => {
   const isStaff = useMatch("/staff/dashboard/booking")
-
+  const navigate = useNavigate();
   
 
   return (
@@ -39,18 +39,18 @@ const SmallCard = ({
               <p className="alert alert-info">
                 Note: {`${h.note.substring(1, 200)}...`}
               </p>
-              <p className="">Status: {h.isApproved ? <p>Approved</p> : <p>Queuing</p>}</p>
+              <div className="">Status: {h.isApproved ? <p>Approved</p> : <p>Queuing</p>}</div>
               {/* <p className="card-text">Type: {h.type}</p>
               <p className="card-text">Age: {h.age}</p>
               <p className="card-text">Breed: {h.breed}</p> */}
 
               <div className="d-flex justify-content-between h4">
-                {/* <button
+                <button
                   onClick={() => navigate(`/pets/${h._id}`)}
                   className="btn btn-primary"
                 >
                   Show more
-                </button> */}
+                </button>
                 {isStaff && 
                   <EditOutlined className="text-warning" onClick={() => handleApproved(h._id)}/>
                 }
@@ -67,4 +67,4 @@ const SmallCard = ({
   );
 };
 
-export default SmallCard;
+export default BookingSmallCard;

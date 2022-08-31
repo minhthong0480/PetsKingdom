@@ -2,12 +2,9 @@ import { Fragment } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
-// const SmallCard = ({h})=> <>{JSON.stringify(h)}</>
 const SmallCard = ({
   h,
   handleDeletePet = (f) => f,
-  owner = false,
-  showViewMoreButton = true,
 }) => {
   const navigate = useNavigate();
   return (
