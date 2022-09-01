@@ -22,7 +22,7 @@ const UserBookingForm = (props) => {
 
   //deconstruct props
   // const {pets} = props
-  console.log(props);
+  // console.log(props);
 
  const navigate = useNavigate()
 
@@ -31,9 +31,10 @@ const UserBookingForm = (props) => {
     let bookingData = new FormData()
     bookingData.append('pets', petId)
     bookingData.append("note", note);
-    bookingData.append("date", date);
+    bookingData.append("fromDate", date[0]);
+    bookingData.append("toDate", date[1]);
     bookingData.append("postedBy", auth.user._id);
-    console.log(e);
+    console.log(date[0]);
 
     console.log([...bookingData]);
     
@@ -54,9 +55,9 @@ const UserBookingForm = (props) => {
     setNote(e.target.value);
   };
 
-  const handleChangeDate = (e) => {
-    setDate(e.target.value)
-  }
+  // const handleChangeDate = (e) => {
+  //   setDate(e.target.value)
+  // }
 
 
 
@@ -87,17 +88,18 @@ const UserBookingForm = (props) => {
             values={note}
           />
 
-          {/* <div className="ml-4">
+          <div className="ml-4">
             <label> Date (From - To)</label>
           </div>
           <RangePicker
           
             className="form-control m-2"
             name='date'
-            onChange={(values) => console.log(values)}
+            onChange={(values) => setDate(values)}
             disabledDate={disabledDate}
             values={date}
-          /> */}
+          />
+          
 
           <br />
           <button className="btn btn-outline-primary m-2">Book</button>

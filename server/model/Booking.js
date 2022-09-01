@@ -19,8 +19,11 @@ const bookingSchema = new Schema(
       max: 1000,
     },
 
-    date: {
-      type: Date,
+    fromDate: {
+      type: String,
+    },
+    toDate: {
+      type: String,
     },
 
     isApproved:{

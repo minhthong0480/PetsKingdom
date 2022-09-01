@@ -1,6 +1,15 @@
 import { Fragment } from "react";
 import { useNavigate, Link, useMatch } from "react-router-dom";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined, FormOutlined } from "@ant-design/icons";
+import {
+  CheckCircleOutlined,
+  ClockCircleOutlined,
+  CloseCircleOutlined,
+  ExclamationCircleOutlined,
+  MinusCircleOutlined,
+  SyncOutlined,
+} from "@ant-design/icons";
+import { Divider, Tag } from "antd";
 
 // const SmallCard = ({h})=> <>{JSON.stringify(h)}</>
 const BookingSmallCard = ({
@@ -34,18 +43,27 @@ const BookingSmallCard = ({
           <div className="col-md-8">
             <div className="card-body">
               <h3 className="card-title">{h.pets.petname}</h3>
-              <p className="card-text">Owner: {h.postedBy.name}</p>
+              <div className="card-text mb-1 h4">Owner: </div>{" "}
+              <p>{h.postedBy.name}</p>
               <p className="alert alert-info">
                 Note: {`${h.note.substring(1, 200)}...`}
               </p>
+              <div className="d-flex mb-1 h4">Booked Dates:</div>
+              <p className="card-text mb-1">From: {h.fromDate.slice(0, 15)}</p>
+              <p className="card-text ">To: {h.toDate.slice(0, 15)}</p>
               <div className="">
-                Status: {h.isApproved ? <p>Approved</p> : <p>Queuing</p>}
+                <div> <p className="h4 mr-2" >Status: </p> </div>{" "}
+                {h.isApproved ? (
+                  <Tag icon={<CheckCircleOutlined />} color="success">
+                    Approved
+                  </Tag>
+                ) : (
+                  <Tag icon={<SyncOutlined spin />} color="processing">
+                    Processing
+                  </Tag>
+                )}
               </div>
-              {/* <p className="card-text">Type: {h.type}</p>
-              <p className="card-text">Age: {h.age}</p>
-              <p className="card-text">Breed: {h.breed}</p> */}
-
-              <div className="d-flex justify-content-between h4">
+              <div className="d-flex justify-content-between mt-3 h4">
                 <button
                   onClick={() => navigate(`/pets/${h._id}`)}
                   className="btn btn-primary"
@@ -53,7 +71,7 @@ const BookingSmallCard = ({
                   Show more
                 </button>
                 {isStaff && (
-                  <EditOutlined
+                  <FormOutlined
                     className="text-warning"
                     onClick={() => handleApproved(h._id)}
                   />

@@ -89,7 +89,7 @@ const Userbooking=() =>{
               // handleChangeDate={handleChangeDate}
               // handleSubmit={handleSubmit}
             />
-            <pre>{JSON.stringify(pets,note,date, null, 4)}</pre>
+            {/* <pre>{JSON.stringify(pets,note,date, null, 4)}</pre> */}
           </div>
         </div>
       </div>
