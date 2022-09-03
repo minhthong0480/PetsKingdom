@@ -65,7 +65,7 @@ const BookingSmallCard = ({
               </div>
               <div className="d-flex justify-content-between mt-3 h4">
                 <button
-                  onClick={() => navigate(`/pets/${h._id}`)}
+                  onClick={() => navigate(`/booking/${h._id}`)}
                   className="btn btn-primary"
                 >
                   Show more

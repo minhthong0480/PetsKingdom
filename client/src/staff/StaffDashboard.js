@@ -1,9 +1,11 @@
 import { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { allPets } from "../action/pet";
+import { allPets, deletePet } from "../action/pet";
 import SmallCard from "../components/cards/SmallCard";
 import StaffDashNav from '../components/StaffDashNav'
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+
 
 const UserDashboard = () => {
   const [pets, setPets] = useState ([])
@@ -19,6 +21,14 @@ const UserDashboard = () => {
         let res = await allPets(auth.token);
         setPets(res.data);
     }
+
+    const handleDeletePet = async (petId) => {
+      if (!window.confirm("Do you want to delete this pet?")) return;
+      deletePet(auth.token, petId).then((res) => {
+        toast.success("Pet Deleted");
+        loadAllPets();
+      });
+    };
   return (
     <Fragment>
       <div className="container-fluid bg-secondary p-5 text-center">
@@ -52,7 +62,7 @@ const UserDashboard = () => {
                     <SmallCard
                       key={h._id}
                       h={h}
-                      // handleDeletePet={handleDeletePet}
+                      handleDeletePet={handleDeletePet}
                     />
                   </div>
                 ))}

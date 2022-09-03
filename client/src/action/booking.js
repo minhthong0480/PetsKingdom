@@ -22,3 +22,10 @@ export const deleteBooking = async (token, bookingId) =>
       Authorization: `Bearer ${token}`,
     },
   });
+
+  export const readBooking = async (bookingId, token) =>
+  await axios.get(`${process.env.REACT_APP_API}/bookings/booking/${bookingId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });

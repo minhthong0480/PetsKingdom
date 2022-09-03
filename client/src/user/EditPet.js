@@ -33,7 +33,7 @@ const navigate = useNavigate();
 
   let match = useMatch("/user/edit-pet/:petId");
   const {petId} = useParams()
-  //   console.log(petId)
+    console.log(petId)
   
   const loadUserPet = async () => {
     let res = await read(petId, token);

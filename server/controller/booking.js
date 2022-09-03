@@ -59,4 +59,13 @@ const approveBooking = async (req, res) => {
     }
   };
 
-module.exports = { createBooking, userBookings, allBookings, deleteBooking, approveBooking };
+  const readBooking = async (req, res) => {
+    let singlebooking = await Booking.findById(req.params.bookingId)
+      .select("-image.data")
+      // .populate("postedBy", "_id name")
+      .exec();
+    console.log("SINGLE BOOKING", singlebooking);
+    res.json(singlebooking);
+  };
+
+module.exports = { createBooking, userBookings, allBookings, deleteBooking, approveBooking, readBooking };
