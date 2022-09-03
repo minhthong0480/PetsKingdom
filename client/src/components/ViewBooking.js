@@ -24,19 +24,19 @@ const ViewBooking = ({}) => {
   });
   let match = useMatch("/user/edit-pet/:petId");
 
-  const {petId} = useParams()
-  console.log(petId)
+  const {bookingId} = useParams()
+  console.log(bookingId)
 
 
   
-  const loadUserPet = async () => {
-      let res = await read(petId, token);
-      setValues({ ...values, ...res.data });
-      setPreview(`${process.env.REACT_APP_API}/pets/pet/image/${petId}`);
-    };
-    useEffect(() => {
-      loadUserPet();
-    }, []);
+  // const loadUserPet = async () => {
+  //     let res = await read(petId, token);
+  //     setValues({ ...values, ...res.data });
+  //     setPreview(`${process.env.REACT_APP_API}/pets/pet/image/${petId}`);
+  //   };
+  //   useEffect(() => {
+  //     loadUserPet();
+  //   }, []);
     
   return (
     <>
