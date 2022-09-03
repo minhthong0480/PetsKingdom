@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 
 const UserDashboard = () => {
   const [pets, setPets] = useState([]);
+  const [query, setQuery] = useState("");
   const { auth } = useSelector((state) => ({ ...state }));
   const { token } = auth;
 
@@ -44,12 +45,28 @@ const UserDashboard = () => {
           <div className="col-md-10 text-center">
             <h2>Pet Collection</h2>
           </div>
-          <div className="col-md-3">
-            <div className="input-group mb-3">
-              <input type="text" className="form-control" />
-              <button className="btn btn-primary" type="button">
-                Search
-              </button>
+        </div>
+        <div className="row justify-content-start ms-3">
+          <div className="col-md-8">
+            <div className="input-group">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Search..."
+                onChange={(e) => setQuery(e.target.value)}
+              />
+              {pets
+                .filter((h) => h.petname.toLowerCase().includes(query))
+                .map((h) => (
+                  <div className="container-fluid m-3">
+                    <br />
+                    <SmallCard
+                      key={h._id}
+                      h={h}
+                      handleDeletePet={handleDeletePet}
+                    />
+                  </div>
+                ))}
             </div>
           </div>
           <div className="col-md-2">
@@ -59,14 +76,10 @@ const UserDashboard = () => {
           </div>
         </div>
       </div>
-      <div className="container-fluid">
+      {/* <div className="container-fluid">
         <br />
-        {/* <pre>{JSON.stringify(pets, null, 4)}</pre> */}
-        {pets.length > 0 &&
-          pets.map((h) => (
-            <SmallCard key={h._id} h={h} handleDeletePet={handleDeletePet} />
-          ))}
-      </div>
+        
+      </div> */}
     </Fragment>
   );
 };
