@@ -46,19 +46,19 @@ const BookingSmallCard = ({
               <div className="card-text mb-1 h4">Owner: </div>{" "}
               <p>{h.postedBy.name}</p>
               <p className="alert alert-info">
-                Note: {`${h.note.substring(1, 200)}...`}
+                Note: {`${h.note.substring(0, 200)}...`}
               </p>
-              <div className="d-flex mb-1 h4">Booked Dates:</div>
+              <div className="d-flex h4">Booked Dates:</div>
               <p className="card-text mb-1">From: {h.fromDate.slice(0, 15)}</p>
               <p className="card-text ">To: {h.toDate.slice(0, 15)}</p>
-              <div className="">
-                <div> <p className="h4 mr-2" >Status: </p> </div>{" "}
+              <div>
+                <div> <p className="h4" >Status: </p> </div>{" "}
                 {h.isApproved ? (
-                  <Tag icon={<CheckCircleOutlined />} color="success">
+                  <Tag className="p-1" icon={<CheckCircleOutlined />} color="success">
                     Approved
                   </Tag>
                 ) : (
-                  <Tag icon={<SyncOutlined spin />} color="processing">
+                  <Tag className="p-1" icon={<SyncOutlined spin />} color="processing">
                     Processing
                   </Tag>
                 )}
