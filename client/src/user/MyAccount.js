@@ -51,9 +51,8 @@ const MyAccount = () => {
       console.log("User Updated", res)
       toast.success(`${res.data.name} is updated`)
       setTimeout(() => {
-        // loadUserPet();
-        // navigate('/')
-        // window.location.reload();
+        navigate('/')
+        window.location.reload();
       }, 3000);
     } catch (error) {
       console.log(error);

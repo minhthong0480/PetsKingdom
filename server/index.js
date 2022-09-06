@@ -9,8 +9,9 @@ const bodyParser = require("body-parser");
 const authRoute = require("./routes/auth");
 const petRoute = require("./routes/pet");
 const staffRoute = require("./routes/staff");
-// const forgotRoute = require("./routes/forgot");
+const forgotRoute = require("./routes/forgotPass");
 const bookingRoute = require("./routes/booking")
+const resetRoute = require("./routes/forgotPass")
 
 dotenv.config();
 
@@ -39,6 +40,8 @@ app.use("/api/staff", staffRoute);
 
 app.use("/api/bookings", bookingRoute)
 
-// app.use("/api/", forgotRoute);
+app.use("/api/", forgotRoute);
+
+app.use("/api", resetRoute); 
 
 app.listen(4000, () => console.log("Server is Up and Running"));
