@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 
 const UserDashBooking = () => {
   const { auth } = useSelector((state) => ({ ...state }));
+  const [query, setQuery] = useState([]);
   const { token } = auth;
   const [booking, setBooking] = useState([]);
   useEffect(() => {
@@ -32,6 +33,7 @@ const UserDashBooking = () => {
       loadUserBooking();
     });
   };
+  console.log(booking);
   return (
     <Fragment>
       <div className="container-fluid bg-secondary p-5 text-center">
@@ -45,24 +47,51 @@ const UserDashBooking = () => {
           <div className="col-md-10">
             <h2>Booking Invoice</h2>
           </div>
+        </div>
 
+        <div className="row justify-content-start ms-3">
+          <div className="col-md-8">
+            <div className="input-group">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Search..."
+                onChange={(e) => setQuery(e.target.value)}
+              />
+              {booking
+                .filter((h) => h.pets.petname.toLowerCase().includes(query))
+                .map((h) => (
+                  <div className="container-fluid m-3">
+                    
+                      <BookingSmallCard
+                        key={h._id}
+                        h={h}
+                        handleApproved={handleApproved}
+                        handleDeleteBooking={handleDeleteBooking}
+                      />
+                    
+                  </div>
+                ))}
+            </div>
+          </div>
           <div className="col-md-2">
             <Link to="/staff/booking" className="btn btn-primary">
               + Add New
             </Link>
           </div>
-          <div className="container-fluid">
-            <br />
-            {booking.map((h) => (
-              <BookingSmallCard
-                key={h._id}
-                h={h}
-                handleApproved={handleApproved}
-                handleDeleteBooking={handleDeleteBooking}
-              />
-            ))}
-          </div>
         </div>
+
+        {/* <div className="container-fluid">
+          <br />
+          {booking.map((h) => (
+            <BookingSmallCard
+              key={h._id}
+              h={h}
+              handleApproved={handleApproved}
+              handleDeleteBooking={handleDeleteBooking}
+            />
+          ))}
+        </div> */}
       </div>
     </Fragment>
   );
