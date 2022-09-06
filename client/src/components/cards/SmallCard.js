@@ -1,14 +1,8 @@
 import { Fragment } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined, FormOutlined } from "@ant-design/icons";
 
-// const SmallCard = ({h})=> <>{JSON.stringify(h)}</>
-const SmallCard = ({
-  h,
-  handleDeletePet = (f) => f,
-  owner = false,
-  showViewMoreButton = true,
-}) => {
+const SmallCard = ({ h, handleDeletePet = (f) => f }) => {
   const navigate = useNavigate();
   return (
     <Fragment>
@@ -48,7 +42,7 @@ const SmallCard = ({
                   Show more
                 </button> */}
                 <Link to={`/user/edit-pet/${h._id}`}>
-                  <EditOutlined className="text-warning" />
+                  <FormOutlined className="text-warning" />
                 </Link>
                 <DeleteOutlined
                   onClick={() => handleDeletePet(h._id)}

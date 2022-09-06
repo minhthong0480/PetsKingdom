@@ -19,7 +19,7 @@ const PetCreateForm = (props) => {
 //   };
 
   const [preview, setPreview] = useState(
-    "https://via.placeholder.com/100x100.png?text=PREVIEW"
+    "http://via.placeholder.com/100x100.png?text=PREVIEW"
   );
   //destructing variable from state
   const { ownername, petname, age, type, breed, note, image } = values;

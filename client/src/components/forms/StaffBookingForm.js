@@ -9,7 +9,7 @@ import {useNavigate} from "react-router-dom"
 
 
 
-const UserBookingForm = (props) => {
+const StaffBookingForm = (props) => {
   const { pets, disabledDate } =
     props;
   // const [pets, setPets] = useState([]);
@@ -43,7 +43,7 @@ const UserBookingForm = (props) => {
       console.log("Booking Created", res);
       toast.success(`New Booking Added`)
       setTimeout(() => {
-        navigate("/user/dashboard/booking");
+        navigate("/staff/dashboard/booking");
       }, 4000);
     } catch (err) {
       console.log(err)
@@ -109,4 +109,4 @@ const UserBookingForm = (props) => {
   );
 };
 
-export default UserBookingForm;
+export default StaffBookingForm;

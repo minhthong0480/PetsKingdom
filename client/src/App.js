@@ -13,6 +13,7 @@ import StaffDashboard from './staff/StaffDashboard'
 import StaffDashBooking from './staff/StaffDashBooking'
 import StaffBooking from './staff/StaffBooking'
 import EditPet from "./user/EditPet";
+import ViewBooking from "./components/ViewBooking";
 
 //import dependencies
 import React from "react";
@@ -35,6 +36,8 @@ function App() {
         <Route exact path="/myaccount" element={<MyAccount />} />
         <Route exact path="/register" element={<Register />} />
         <Route exact path="/forgot-password" element={<ForgotPassword />} />
+        <Route exact path="/booking/:bookingId" element={<ViewBooking />} />
+        {/* <Route exact path="/reset-password" element={<ForgotPassword />} /> */}
 
         {/* code for private route */}
         <Route element={<PrivateRoute />}>
