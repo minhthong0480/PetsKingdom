@@ -51,4 +51,22 @@ export const login = (userdata, navigate) => async dispatch => {
       }
 }
 
+export const readUser = async (userId, token) =>
+  await axios.get(`${process.env.REACT_APP_API}/user/${userId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  export const updateUser = async (token, data, userId) =>
+  await axios.put(
+    `${process.env.REACT_APP_API}/user/update-user/${userId}`,
+    data,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
 // export const forgot = () => async 

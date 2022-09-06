@@ -4,9 +4,10 @@ const MyAccountForm = (props) => {
   const {
     handleSubmit,
     values,
+    setValues,
     handleChange
   } = props;
-  const { name, email, password } = values;
+  const { name, email } = values;
   return (
     <form onSubmit={handleSubmit} className="mt-3">
       <div className="form-group mb-3 mt-3">
@@ -14,9 +15,10 @@ const MyAccountForm = (props) => {
         <input
           type="text"
           className="form-control"
-          defaultValue={name}
+          // defaultValue={name}
           placeholder="Enter Your Name"
-          values={name}
+          value={name}
+          name='name'
           onChange={handleChange}
         />
       </div>
@@ -26,9 +28,9 @@ const MyAccountForm = (props) => {
         <input
           type="email"
           className="form-control"
-          defaultValue={email}
+          // defaultValue={email}
           placeholder="name@example.com"
-          values={email}
+          value={email}
           onChange={handleChange}
           disabled
         />

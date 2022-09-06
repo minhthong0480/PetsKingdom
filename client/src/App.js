@@ -7,11 +7,11 @@ import MyAccount from "./user/MyAccount";
 import ForgotPassword from "./components/ForgotPassword";
 import UserDashboard from "./user/UserDashboard";
 import UserDashbooking from "./user/UserDashBooking";
-import UserBooking from './user/Userbooking'
-import UserPet from './user/UserPet'
-import StaffDashboard from './staff/StaffDashboard'
-import StaffDashBooking from './staff/StaffDashBooking'
-import StaffBooking from './staff/StaffBooking'
+import UserBooking from "./user/Userbooking";
+import UserPet from "./user/UserPet";
+import StaffDashboard from "./staff/StaffDashboard";
+import StaffDashBooking from "./staff/StaffDashBooking";
+import StaffBooking from "./staff/StaffBooking";
 import EditPet from "./user/EditPet";
 import ViewBooking from "./components/ViewBooking";
 
@@ -22,7 +22,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PrivateRoute from "./components/PrivateRoute";
 import Redirect from "./components/Redirect";
-
 
 function App() {
   return (
@@ -36,17 +35,26 @@ function App() {
         <Route exact path="/myaccount" element={<MyAccount />} />
         <Route exact path="/register" element={<Register />} />
         <Route exact path="/forgot-password" element={<ForgotPassword />} />
-        <Route exact path="/booking/:bookingId" element={<ViewBooking />} />
         {/* <Route exact path="/reset-password" element={<ForgotPassword />} /> */}
+          <Route exact path="/user/update-user/:userId" element={<MyAccount />} />
 
         {/* code for private route */}
         <Route element={<PrivateRoute />}>
           <Route exact path="/user/dashboard" element={<UserDashboard />} />
-          <Route exact path="/user/dashboard/booking" element={<UserDashbooking />} />
+          <Route exact path="/booking/:bookingId" element={<ViewBooking />} />
+          <Route
+            exact
+            path="/user/dashboard/booking"
+            element={<UserDashbooking />}
+          />
           <Route exact path="/user/booking" element={<UserBooking />} />
           <Route exact path="/user/create-pet" element={<UserPet />} />
           <Route exact path="/staff/dashboard" element={<StaffDashboard />} />
-          <Route exact path="/staff/dashboard/booking" element={<StaffDashBooking />} />
+          <Route
+            exact
+            path="/staff/dashboard/booking"
+            element={<StaffDashBooking />}
+          />
           <Route exact path="/staff/booking" element={<StaffBooking />} />
           <Route exact path="/user/edit-pet/:petId" element={<EditPet />} />
         </Route>

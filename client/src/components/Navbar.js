@@ -32,7 +32,7 @@ const Navbar = () => {
             <ul className="nav">
               {!auth.user.isStaff && (
                 <li className="nav-item">
-                  <Link className="nav-link active" to="/myaccount">
+                  <Link className="nav-link active" to={`/user/update-user/${auth.user._id}`}>
                     My Account
                   </Link>
                 </li>
