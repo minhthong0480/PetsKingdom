@@ -1,12 +1,8 @@
 import { Fragment } from "react";
 import { useNavigate, Link, useMatch } from "react-router-dom";
-import { EditOutlined, DeleteOutlined, FormOutlined } from "@ant-design/icons";
+import {  DeleteOutlined, FormOutlined, CloseOutlined } from "@ant-design/icons";
 import {
   CheckCircleOutlined,
-  ClockCircleOutlined,
-  CloseCircleOutlined,
-  ExclamationCircleOutlined,
-  MinusCircleOutlined,
   SyncOutlined,
 } from "@ant-design/icons";
 import { Divider, Tag } from "antd";
@@ -17,6 +13,8 @@ const BookingSmallCard = ({
   handleDeleteBooking = (f) => f,
 
   handleApproved = (f) => f,
+
+  handleDisapproved = (f)=>f,
 }) => {
   const isStaff = useMatch("/staff/dashboard/booking");
   const navigate = useNavigate();
@@ -53,7 +51,7 @@ const BookingSmallCard = ({
               <p className="card-text ">To: {h.toDate.slice(0, 15)}</p>
               <div>
                 <div> <p className="h4" >Status: </p> </div>{" "}
-                {h.isApproved ? (
+                {h.isApproved  ? (
                   <Tag className="p-1" icon={<CheckCircleOutlined />} color="success">
                     Approved
                   </Tag>
@@ -62,6 +60,8 @@ const BookingSmallCard = ({
                     Processing
                   </Tag>
                 )}
+
+                
               </div>
               <div className="d-flex justify-content-between mt-3 h4">
                 <button
@@ -71,11 +71,18 @@ const BookingSmallCard = ({
                   Show more
                 </button>
                 {isStaff && (
+                  <>
                   <FormOutlined
                     className="text-warning"
                     onClick={() => handleApproved(h._id)}
                   />
-                )}
+                  <CloseOutlined 
+                  className="text-warning"
+                  onClick={() => handleDisapproved(h._id)}/>
+                  </>
+                  
+                  
+                  )}
                 <DeleteOutlined
                   onClick={() => handleDeleteBooking(h._id)}
                   className="text-danger"

@@ -29,6 +29,11 @@ const bookingSchema = new Schema(
     isApproved:{
         type: Boolean,
         default: false
+    },
+
+    disApproved: {
+      type: Boolean,
+      default: false
     }
   },
   { timestamps: true }

@@ -59,6 +59,19 @@ const approveBooking = async (req, res) => {
     }
   };
 
+  const disapprovedBooking = async (req, res) => {
+    try {  
+      let updated = await Booking.findByIdAndUpdate(req.params.bookingId, {
+        new: true,
+        disApproved: true
+      })
+      res.json(updated)
+    } catch (error) {
+      console.log(error);
+      res.status(400).send("Disapprove Failed");
+    }
+  };
+
   const readBooking = async (req, res) => {
     let singlebooking = await Booking.findById(req.params.bookingId)
       .select("-image.data")
@@ -68,4 +81,4 @@ const approveBooking = async (req, res) => {
     res.json(singlebooking);
   };
 
-module.exports = { createBooking, userBookings, allBookings, deleteBooking, approveBooking, readBooking };
+module.exports = { createBooking, userBookings, allBookings, deleteBooking, approveBooking, disapprovedBooking, readBooking };
