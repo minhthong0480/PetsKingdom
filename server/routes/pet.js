@@ -19,5 +19,6 @@ router.get("/allpets", verifiedToken, allPets);
 router.delete("/delete-pet/:petId", verifiedToken, deletePet);
 router.get("/pet/:petId", verifiedToken, read);
 router.put("/update-pet/:petId", verifiedToken, formidable(), update);
+// router.put("/forgot/", forgot)
 
 module.exports = router;
