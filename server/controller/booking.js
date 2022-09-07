@@ -47,38 +47,46 @@ const deleteBooking = async (req, res) => {
 };
 
 const approveBooking = async (req, res) => {
-    try {  
-      let updated = await Booking.findByIdAndUpdate(req.params.bookingId, {
-        new: true,
-        isApproved: true
-      })
-      res.json(updated)
-    } catch (error) {
-      console.log(error);
-      res.status(400).send("Approve Failed");
-    }
-  };
+  try {
+    let updated = await Booking.findByIdAndUpdate(req.params.bookingId, {
+      new: true,
+      status: "Approved",
+    });
+    res.json(updated);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send("Approve Failed");
+  }
+};
 
-  const disapprovedBooking = async (req, res) => {
-    try {  
-      let updated = await Booking.findByIdAndUpdate(req.params.bookingId, {
-        new: true,
-        disApproved: true
-      })
-      res.json(updated)
-    } catch (error) {
-      console.log(error);
-      res.status(400).send("Disapprove Failed");
-    }
-  };
+const disapprovedBooking = async (req, res) => {
+  try {
+    let updated = await Booking.findByIdAndUpdate(req.params.bookingId, {
+      new: true,
+      status: 'Denied',
+    });
+    res.json(updated);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send("Disapprove Failed");
+  }
+};
 
-  const readBooking = async (req, res) => {
-    let singlebooking = await Booking.findById(req.params.bookingId)
-      .select("-image.data")
-      // .populate("postedBy", "_id name")
-      .exec();
-    console.log("SINGLE BOOKING", singlebooking);
-    res.json(singlebooking);
-  };
+const readBooking = async (req, res) => {
+  let singlebooking = await Booking.findById(req.params.bookingId)
+    .select("-image.data")
+    // .populate("postedBy", "_id name")
+    .exec();
+  console.log("SINGLE BOOKING", singlebooking);
+  res.json(singlebooking);
+};
 
-module.exports = { createBooking, userBookings, allBookings, deleteBooking, approveBooking, disapprovedBooking, readBooking };
+module.exports = {
+  createBooking,
+  userBookings,
+  allBookings,
+  deleteBooking,
+  approveBooking,
+  disapprovedBooking,
+  readBooking,
+};

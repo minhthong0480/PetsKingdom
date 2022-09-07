@@ -1,9 +1,10 @@
 import { Fragment } from "react";
 import { useNavigate, Link, useMatch } from "react-router-dom";
-import {  DeleteOutlined, FormOutlined, CloseOutlined } from "@ant-design/icons";
+import { DeleteOutlined, FormOutlined, CloseOutlined } from "@ant-design/icons";
 import {
   CheckCircleOutlined,
   SyncOutlined,
+  CloseCircleOutlined,
 } from "@ant-design/icons";
 import { Divider, Tag } from "antd";
 
@@ -14,10 +15,35 @@ const BookingSmallCard = ({
 
   handleApproved = (f) => f,
 
-  handleDisapproved = (f)=>f,
+  handleDisapproved = (f) => f,
 }) => {
   const isStaff = useMatch("/staff/dashboard/booking");
   const navigate = useNavigate();
+
+  const Status = () => {
+    switch (h.status) {
+      case "Processing":
+        return (
+          <Tag className="p-1" icon={<SyncOutlined spin />} color="processing">
+            Processing
+          </Tag>
+        );
+      case "Approved":
+        return (
+          <Tag className="p-1" icon={<CheckCircleOutlined />} color="success">
+            Approved
+          </Tag>
+        );
+      case "Denied":
+        return (
+          <Tag icon={<CloseCircleOutlined />} color="error">
+            Denied
+          </Tag>
+        );
+      default:
+        break;
+    }
+  };
 
   return (
     <Fragment>
@@ -50,18 +76,12 @@ const BookingSmallCard = ({
               <p className="card-text mb-1">From: {h.fromDate.slice(0, 15)}</p>
               <p className="card-text ">To: {h.toDate.slice(0, 15)}</p>
               <div>
-                <div> <p className="h4" >Status: </p> </div>{" "}
-                {h.isApproved  ? (
-                  <Tag className="p-1" icon={<CheckCircleOutlined />} color="success">
-                    Approved
-                  </Tag>
-                ) : (
-                  <Tag className="p-1" icon={<SyncOutlined spin />} color="processing">
-                    Processing
-                  </Tag>
-                )}
-
+                <div>
+                  {" "}
+                  <p className="h4">Status: </p>{" "}
+                </div>{" "}
                 
+                {<Status />}
               </div>
               <div className="d-flex justify-content-between mt-3 h4">
                 <button
@@ -72,17 +92,16 @@ const BookingSmallCard = ({
                 </button>
                 {isStaff && (
                   <>
-                  <FormOutlined
-                    className="text-warning"
-                    onClick={() => handleApproved(h._id)}
-                  />
-                  <CloseOutlined 
-                  className="text-warning"
-                  onClick={() => handleDisapproved(h._id)}/>
+                    <FormOutlined
+                      className="text-warning"
+                      onClick={() => handleApproved(h._id)}
+                    />
+                    <CloseOutlined
+                      className="text-warning"
+                      onClick={() => handleDisapproved(h._id)}
+                    />
                   </>
-                  
-                  
-                  )}
+                )}
                 <DeleteOutlined
                   onClick={() => handleDeleteBooking(h._id)}
                   className="text-danger"

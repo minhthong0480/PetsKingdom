@@ -7,6 +7,10 @@ import { useSelector } from "react-redux";
 import { deleteBooking, userBookings } from "../action/booking";
 import { toast } from "react-toastify";
 
+//class compoenent => life cycle
+//func component =? side effect
+//side effect 
+
 const UserDashBooking = () => {
   const [booking, setBooking] = useState([]);
   const { auth } = useSelector((state) => ({ ...state }));
@@ -28,6 +32,8 @@ const UserDashBooking = () => {
       loadUserBooking();
     });
   };
+
+  
   return (
     <Fragment>
       <div className="container-fluid bg-secondary p-5 text-center">
@@ -43,7 +49,7 @@ const UserDashBooking = () => {
           </div>
         </div>
         <div className="col-md-2">
-          <Link to="/user/booking" className="btn btn-primary">
+          <Link to="/staff/dashboard/booking" className="btn btn-primary">
             + Add New
           </Link>
         </div>
