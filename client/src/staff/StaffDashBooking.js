@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import BookingSmallCard from "../components/cards/BookingSmallCard";
 import { toast } from "react-toastify";
 
-const UserDashBooking = () => {
+const StaffDashBooking = () => {
   const { auth } = useSelector((state) => ({ ...state }));
   const [query, setQuery] = useState([]);
   const { token } = auth;
@@ -43,7 +43,7 @@ const UserDashBooking = () => {
       loadUserBooking();
     });
   };
-  console.log(booking);
+  // console.log(booking);
   return (
     <Fragment>
       <div className="container-fluid bg-secondary p-5 text-center">
@@ -108,4 +108,4 @@ const UserDashBooking = () => {
   );
 };
 
-export default UserDashBooking;
+export default StaffDashBooking;

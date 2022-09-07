@@ -24,7 +24,7 @@ const userBookings = async (req, res) => {
     .limit(24)
     .select("-image.data")
     .populate("postedBy", "_id name")
-    .populate("pets", "petname image")
+    .populate("pets", "petname")
     .exec();
   //console.log(all)
   res.json(bookings);
@@ -35,7 +35,7 @@ const allBookings = async (req, res) => {
     .limit(24)
     .select("-image.data")
     .populate("postedBy", "_id name")
-    .populate("pets", "petname image")
+    .populate("pets", "petname image ownername")
     .exec();
   //console.log(all)
   res.json(all);

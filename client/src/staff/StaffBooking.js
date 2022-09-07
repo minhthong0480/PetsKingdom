@@ -5,11 +5,11 @@ import { userBookings, createBooking } from "../action/booking";
 
 import { DatePicker, Select } from "antd";
 import {toast} from 'react-toastify'
-import StaffBookingForm from "../components/forms/UserBookingForm";
+import StaffBookingForm from "../components/forms/StaffBookingForm";
 import { useNavigate } from "react-router-dom";
 import { allPets, userPets } from "../action/pet";
 
-const Userbooking=() =>{
+const Staffbooking=() =>{
   const [pets, setPets] = useState([]);
   const [note, setNote] = useState([])
   const [date, setDate] = useState([])
@@ -97,4 +97,4 @@ const Userbooking=() =>{
   );
 }
 
-export default Userbooking;
+export default Staffbooking;

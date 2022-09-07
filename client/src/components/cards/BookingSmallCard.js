@@ -45,12 +45,14 @@ const BookingSmallCard = ({
     }
   };
 
+  // console.log(h.pets)
+  // console.log(h.);
   return (
     <Fragment>
       <div className="card m-3">
         <div className="row no-gutters">
           <div className="col-md-4">
-            {h.pets.image.contentType ? (
+            {h.pets.image ? (
               <img
                 src={`${process.env.REACT_APP_API}/pets/pet/image/${h.pets._id}`}
                 alt="pet_picture"
@@ -58,7 +60,7 @@ const BookingSmallCard = ({
               />
             ) : (
               <img
-                src="https://via.placeholder.com/900x500.png?text=pet+picture"
+                src="https://via.placeholder.com/900x500.png?text=Pet+picture"
                 alt="pet_picture"
                 className="card-image img img-fluid"
               />
@@ -67,8 +69,13 @@ const BookingSmallCard = ({
           <div className="col-md-8">
             <div className="card-body">
               <h3 className="card-title">{h.pets.petname}</h3>
-              <div className="card-text mb-1 h4">Owner: </div>{" "}
-              <p>{h.postedBy.name}</p>
+              {isStaff && (
+                <>
+                  <div className="card-text mb-1 h4">Owner: </div>{" "}
+                  <p>{h.pets.ownername}</p>
+                </>
+              )}
+
               <p className="alert alert-info">
                 Note: {`${h.note.substring(0, 200)}...`}
               </p>
@@ -80,7 +87,6 @@ const BookingSmallCard = ({
                   {" "}
                   <p className="h4">Status: </p>{" "}
                 </div>{" "}
-                
                 {<Status />}
               </div>
               <div className="d-flex justify-content-between mt-3 h4">

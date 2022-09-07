@@ -22,6 +22,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PrivateRoute from "./components/PrivateRoute";
 import Redirect from "./components/Redirect";
+import StaffPet from "./staff/StaffPet";
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
           />
           <Route exact path="/user/booking" element={<UserBooking />} />
           <Route exact path="/user/create-pet" element={<UserPet />} />
+          <Route exact path="/staff/create-pet" element={<StaffPet />} />
           <Route exact path="/staff/dashboard" element={<StaffDashboard />} />
           <Route
             exact

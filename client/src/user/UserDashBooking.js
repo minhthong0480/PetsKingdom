@@ -49,7 +49,7 @@ const UserDashBooking = () => {
           </div>
         </div>
         <div className="col-md-2">
-          <Link to="/staff/dashboard/booking" className="btn btn-primary">
+          <Link to="/user/booking" className="btn btn-primary">
             + Add New
           </Link>
         </div>
