@@ -45,14 +45,14 @@ const BookingSmallCard = ({
     }
   };
 
-  // console.log(h.pets)
+  console.log(h.pets)
   // console.log(h.);
   return (
     <Fragment>
       <div className="card m-3">
         <div className="row no-gutters">
           <div className="col-md-4">
-            {h.pets.image ? (
+            {h.pets.image.contentType ? (
               <img
                 src={`${process.env.REACT_APP_API}/pets/pet/image/${h.pets._id}`}
                 alt="pet_picture"
