@@ -34,7 +34,7 @@ const pets = async (req, res) => {
   let pets = await Pet.find({ postedBy: req.user })
     .limit(24)
     .select("-image.data")
-    .populate("postedBy", "_id name")
+    .populate("postedBy", "_id name image")
     .exec();
   //console.log(all)
   res.json(pets);
@@ -44,7 +44,7 @@ const allPets = async (req, res) => {
   let all = await Pet.find({})
     .limit(24)
     .select("-image.data")
-    .populate("postedBy", "_id name")
+    .populate("postedBy", "_id name image")
     .exec();
   //console.log(all)
   res.json(all);

@@ -69,7 +69,7 @@ const UserDashboard = () => {
             </div>
           </div>
           <div className="col-md-2">
-            <Link to="/user/create-pet" className="btn btn-primary">
+            <Link to="/staff/create-pet" className="btn btn-primary">
               + Add New
             </Link>
           </div>

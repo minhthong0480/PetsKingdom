@@ -16,6 +16,8 @@ export const allBookings = async () => await axios.get(`${process.env.REACT_APP_
 
 export const approveBooking = async (bookingId) => await axios.put(`${process.env.REACT_APP_API}/bookings/approvebookings/${bookingId}`);
 
+export const disapproveBooking = async (bookingId) => await axios.put(`${process.env.REACT_APP_API}/bookings/disapprovebookings/${bookingId}`);
+
 export const deleteBooking = async (token, bookingId) =>
   await axios.delete(`${process.env.REACT_APP_API}/bookings/delete-booking/${bookingId}`, {
     headers: {

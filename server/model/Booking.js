@@ -10,9 +10,9 @@ const bookingSchema = new Schema(
     },
 
     postedBy: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-      },
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
 
     note: {
       type: String,
@@ -26,11 +26,16 @@ const bookingSchema = new Schema(
       type: String,
     },
 
-    isApproved:{
-        type: Boolean,
-        default: false
-    }
+    isApproved: {
+      type: Boolean,
+      default: false,
+    },
+
+    status: {
+      type: String,
+      default: "Processing",
+    },
   },
   { timestamps: true }
 );
-module.exports = mongoose.model('Booking', bookingSchema)
+module.exports = mongoose.model("Booking", bookingSchema);

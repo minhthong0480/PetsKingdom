@@ -1,12 +1,12 @@
 import { Fragment, useEffect, useState } from "react";
 import StaffDashNav from "../components/StaffDashNav";
 import { Link } from "react-router-dom";
-import { allBookings, approveBooking, deleteBooking } from "../action/booking";
+import { allBookings, approveBooking, deleteBooking, disapproveBooking } from "../action/booking";
 import { useSelector } from "react-redux";
 import BookingSmallCard from "../components/cards/BookingSmallCard";
 import { toast } from "react-toastify";
 
-const UserDashBooking = () => {
+const StaffDashBooking = () => {
   const { auth } = useSelector((state) => ({ ...state }));
   const [query, setQuery] = useState([]);
   const { token } = auth;
@@ -19,6 +19,7 @@ const UserDashBooking = () => {
     let res = await allBookings();
     setBooking(res.data);
   };
+
   const handleApproved = async (bookingId) => {
     if (!window.confirm("Do you want to approved this booking?")) return;
     approveBooking(bookingId).then((res) => {
@@ -26,6 +27,15 @@ const UserDashBooking = () => {
       loadUserBooking();
     });
   };
+
+  const handleDisapproved = async (bookingId) => {
+    if (!window.confirm("Do you want to disapproved this booking?")) return;
+    disapproveBooking(bookingId).then((res) => {
+      toast.success("Booking Disapproved");
+      loadUserBooking();
+    });
+  }
+
   const handleDeleteBooking = async (bookingId) => {
     if (!window.confirm("Do you want to delete this booking?")) return;
     deleteBooking(token, bookingId).then((res) => {
@@ -33,7 +43,7 @@ const UserDashBooking = () => {
       loadUserBooking();
     });
   };
-  console.log(booking);
+  // console.log(booking);
   return (
     <Fragment>
       <div className="container-fluid bg-secondary p-5 text-center">
@@ -68,6 +78,7 @@ const UserDashBooking = () => {
                         h={h}
                         handleApproved={handleApproved}
                         handleDeleteBooking={handleDeleteBooking}
+                        handleDisapproved={handleDisapproved}
                       />
                     
                   </div>
@@ -97,4 +108,4 @@ const UserDashBooking = () => {
   );
 };
 
-export default UserDashBooking;
+export default StaffDashBooking;

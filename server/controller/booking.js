@@ -24,7 +24,7 @@ const userBookings = async (req, res) => {
     .limit(24)
     .select("-image.data")
     .populate("postedBy", "_id name")
-    .populate("pets", "petname image")
+    .populate("pets", "petname")
     .exec();
   //console.log(all)
   res.json(bookings);
@@ -35,7 +35,7 @@ const allBookings = async (req, res) => {
     .limit(24)
     .select("-image.data")
     .populate("postedBy", "_id name")
-    .populate("pets", "petname image")
+    .populate("pets", "petname image ownername")
     .exec();
   //console.log(all)
   res.json(all);
@@ -47,25 +47,46 @@ const deleteBooking = async (req, res) => {
 };
 
 const approveBooking = async (req, res) => {
-    try {  
-      let updated = await Booking.findByIdAndUpdate(req.params.bookingId, {
-        new: true,
-        isApproved: true
-      })
-      res.json(updated)
-    } catch (error) {
-      console.log(error);
-      res.status(400).send("Approve Failed");
-    }
-  };
+  try {
+    let updated = await Booking.findByIdAndUpdate(req.params.bookingId, {
+      new: true,
+      status: "Approved",
+    });
+    res.json(updated);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send("Approve Failed");
+  }
+};
 
-  const readBooking = async (req, res) => {
-    let singlebooking = await Booking.findById(req.params.bookingId)
-      .select("-image.data")
-      // .populate("postedBy", "_id name")
-      .exec();
-    console.log("SINGLE BOOKING", singlebooking);
-    res.json(singlebooking);
-  };
+const disapprovedBooking = async (req, res) => {
+  try {
+    let updated = await Booking.findByIdAndUpdate(req.params.bookingId, {
+      new: true,
+      status: 'Denied',
+    });
+    res.json(updated);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send("Disapprove Failed");
+  }
+};
 
-module.exports = { createBooking, userBookings, allBookings, deleteBooking, approveBooking, readBooking };
+const readBooking = async (req, res) => {
+  let singlebooking = await Booking.findById(req.params.bookingId)
+    .select("-image.data")
+    // .populate("postedBy", "_id name")
+    .exec();
+  console.log("SINGLE BOOKING", singlebooking);
+  res.json(singlebooking);
+};
+
+module.exports = {
+  createBooking,
+  userBookings,
+  allBookings,
+  deleteBooking,
+  approveBooking,
+  disapprovedBooking,
+  readBooking,
+};
