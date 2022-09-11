@@ -43,10 +43,10 @@ const ViewBooking = () => {
 
   return (
     <Fragment>
-      {console.log(booking)}
+      {/* {console.log(booking)} */}
       <div className="container-fluid bg-secondary p-5 text-center">
         {/* <h2>{booking.pets.petname}</h2> */}
-        <h2>{booking.pets?.petname}</h2>
+        <h2>{booking.pets?.petname}'s Booking Invocie</h2>
         {/* <h2>View Booking</h2> */}
       </div>
       <div className="container-fluid">
@@ -66,12 +66,22 @@ const ViewBooking = () => {
                 className="card-image img img-fluid"
               />
             )}
-
-            <p>Owner Name: {booking.pets?.ownername}</p>
-            <p>
-              Book Date: <br /> From: {booking.fromDate?.slice(0, 15)} To:{" "}
+          </div>
+          <div className="col-md-6">
+            <br />
+            <h3>Owner Information</h3>
+             <p>Owner: {booking.pets?.ownername}</p>
+             <p className="alert alert-info mt-3 ">Note: {booking.note}</p>
+             <p className="cardtext">Book Date: <br />
+              <span className="float-right text-primary">
+              From: {booking.fromDate?.slice(0, 15)} To:{" "}
               {booking.toDate?.slice(0, 15)}
-            </p>
+              </span>
+             </p>
+             <h3>Pet Information</h3>
+             <p>Type: {booking.pets?.type}</p>
+             <p>Breed: {booking.pets?.breed}</p>
+             <p>Age: {booking.pets?.age}</p>
           </div>
         </div>
       </div>
