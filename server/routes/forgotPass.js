@@ -22,12 +22,12 @@ const verifyToken = require ('./verifyToken')
 // });
 
 route.post("/forgot-password", async (req, res, next) => {
-  const { email } = req.body;
+  // const { email } = req.body;
 //   console.log(email);
 //   let emaildata = await User.findOne({ email: req.body.email });
 //   console.log(emaildata);
   //check wheter the account is valid
-  const emailExist = await User.findOne({ email: req.body.email });
+  const emailExist = await User.find({ email: req.body.email });
   if (!emailExist) {
     return res.status(400).send("Email not existed");
   
@@ -39,6 +39,7 @@ route.post("/forgot-password", async (req, res, next) => {
   const payload = {
     email: req.body.email,
   };
+  console.log(req.body.email);
   const token = jwt.sign(payload, secure, { expiresIn: "15m" });
   mailer.sendMail(
     req.body.email,

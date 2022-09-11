@@ -1,26 +1,26 @@
 import { Fragment, React, useState } from "react";
+import {forgot} from "../action/auth"
 import axios from "axios";
 import { toast } from "react-toastify";
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");
-  const [text, setText] = useState('')
-  const [send, setSend] = useState(false)
+  // const [text, setText] = useState('')
+  // const [send, setSend] = useState(false)
 
   const handleSubmit = async(e) => {
     e.preventDefault();
     // const data = {
     //   email: this.email,
     // };
-    setSend(true)
+    // setSend(true)
     try {
-      await axios.post(`${process.env.REACT_APP_API}/send_mail`, {text}).then((res) => {
-        console.log(res);
-      });
-    } catch (error) {
-      if (e.response.status === 400) {
-        toast.error(e.response.data);
+      let res = await forgot(email)
+      console.log("Email sent", res);
+      // toast.success(`New Booking Added`)
       }
+    catch (error) {
+      console.log(error);
     }
   };
   return (
@@ -33,7 +33,7 @@ function ForgotPassword() {
         <div className="container">
           <div className="row">
             <div className="col-md-6 offset-md-3">
-              <form className="mt-3">
+              <div className="mt-3">
                 <div className="form-group mb-3">
                   <label className="form-label text-center">
                     Enter Your Email
@@ -42,14 +42,15 @@ function ForgotPassword() {
                     type="text"
                     className="form-control"
                     placeholder="name@example.com"
-                    value={text}
-                    onChange={(e) => setText(e.target.value)}
+                    value={email}
+                    name='email'
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
 
                 <button type = "submit" className="btn btn-primary mb-2">Reset</button>
                 <br />
-              </form>
+              </div>
             </div>
           </div>
         </div>
