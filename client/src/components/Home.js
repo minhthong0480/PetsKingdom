@@ -14,7 +14,7 @@ const Home = () => {
                         </div>
                         <div className="col-md-8">
                             <div className="news-feed-text">
-                                <a href="https://kimipet.vn/khach-san-cho-meo-tphcm/"><h4>TOP #12 Khách sạn chó mèo tại thành phố Hồ Chí Minh hàng đầu</h4></a><br/><span>Khách sạn chó mèo TPHCM là nơi trông giữ thú cưng dành cho những người công việc bận rộn hoặc đi chơi xa, không thể chăm sóc các bé. <br/></span>
+                                <a href="#"><h4>TOP #12 Khách sạn chó mèo tại thành phố Hồ Chí Minh hàng đầu</h4></a><br/><span>Khách sạn chó mèo TPHCM là nơi trông giữ thú cưng dành cho những người công việc bận rộn hoặc đi chơi xa, không thể chăm sóc các bé. <br/></span>
                                 <div className="d-flex flex-row justify-content-between align-items-center mt-2">
                                     <div className="d-flex creator-profile"><img className="rounded-circle" src="https://i.imgur.com/uSlStch.jpg" width="50" height="50"/>
                                         <div className="d-flex flex-column ml-2">
@@ -38,7 +38,7 @@ const Home = () => {
                         </div>
                         <div className="col-md-8">
                             <div className="news-feed-text">
-                            <a href="https://thuythithi.com/6-bi-quyet-cham-soc-thu-cung-luon-khoe-manh/"><h4>6 bí quyết chăm sóc thú cưng luôn khoẻ mạnh</h4></a><br/><span>Thú cưng là con vật luôn khiến chúng ta hạnh phúc bởi vì sự đáng yêu của chúng. Hãy thử tưởng tượng một ngày dài làm việc căng thẳng, bạn về nhà và luôn có “một người bạn” đợi bạn ở nhà. Mỗi hành động nhỏ của chúng cũng khiến bạn cảm thấy yêu đời và nhẹ nhõm.  <br/></span>
+                            <a href="#"><h4>6 bí quyết chăm sóc thú cưng luôn khoẻ mạnh</h4></a><br/><span>Thú cưng là con vật luôn khiến chúng ta hạnh phúc bởi vì sự đáng yêu của chúng. Hãy thử tưởng tượng một ngày dài làm việc căng thẳng, bạn về nhà và luôn có “một người bạn” đợi bạn ở nhà. Mỗi hành động nhỏ của chúng cũng khiến bạn cảm thấy yêu đời và nhẹ nhõm.  <br/></span>
                                 <div className="d-flex flex-row justify-content-between align-items-center mt-2">
                                     <div className="d-flex creator-profile"><img className="rounded-circle" src="https://i.imgur.com/uSlStch.jpg" width="50" height="50"/>
                                         <div className="d-flex flex-column ml-2">
@@ -62,7 +62,7 @@ const Home = () => {
                         </div>
                         <div className="col-md-8">
                             <div className="news-feed-text">
-                            <a href="https://petshopsaigon.vn/tin-tuc/cho-bieng-an"><h4>Chó biếng ăn: 16 mẹo kích thích khẩu vị từ bác sĩ Hoa Kỳ</h4></a><br/><span>Chó biếng ăn là tình trạng rất thường gặp. Bạn đang nuôi một chú chó kén ăn và đang đau đầu vì không biết cho bé ăn gì?  <br/></span>
+                            <a href="#"><h4>Chó biếng ăn: 16 mẹo kích thích khẩu vị từ bác sĩ Hoa Kỳ</h4></a><br/><span>Chó biếng ăn là tình trạng rất thường gặp. Bạn đang nuôi một chú chó kén ăn và đang đau đầu vì không biết cho bé ăn gì?  <br/></span>
                                 <div className="d-flex flex-row justify-content-between align-items-center mt-2">
                                     <div className="d-flex creator-profile"><img className="rounded-circle" src="https://i.imgur.com/uSlStch.jpg" width="50" height="50"/>
                                         <div className="d-flex flex-column ml-2">
