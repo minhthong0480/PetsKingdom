@@ -39,7 +39,7 @@ route.post("/forgot-password", async (req, res, next) => {
   const payload = {
     email: req.body.email,
   };
-  console.log(req.body.email);
+  // console.log(req.body.email);
   const token = jwt.sign(payload, secure, { expiresIn: "15m" });
   mailer.sendMail(
     req.body.email,
@@ -47,7 +47,7 @@ route.post("/forgot-password", async (req, res, next) => {
     `<a href="${process.env.APP_URL}/reset-password/${token}"> Reset Password </a>`
   );
   const link = `${process.env.APP_URL}/reset-password/${token}`;
-  console.log(link);
+  // console.log(link);
   res.send("link has been sent to your email");
 });
 
@@ -55,7 +55,7 @@ route.get("/reset-password/:token", (req, res, next) => {
   const { token } = req.params;
 
   //check if the id is valid
-//   if (id !== req.body.name) {
+//   if (id !== req.body.name) 
 //     res.send("the name is invalid");
 //     return;
 //   }
