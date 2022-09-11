@@ -50,6 +50,4 @@ const petSchema = new Schema(
   { timestamps: true }
 );
 
-const petModel = mongoose.model("Pet", petSchema);
-
-module.exports = petModel;
+module.exports = mongoose.model("Pet", petSchema);;

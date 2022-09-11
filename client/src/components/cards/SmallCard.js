@@ -27,7 +27,7 @@ const SmallCard = ({ h, handleDeletePet = (f) => f }) => {
             <div className="card-body">
               <h3 className="card-title">{h.petname}</h3>
               <p className="alert alert-info">
-                Note: {`${h.note.substring(1, 200)}...`}
+                Note: {`${h.note.substring(0, 200)}...`}
               </p>
               <p className="card-text">Owner: {h.ownername}</p>
               <p className="card-text">Type: {h.type}</p>
