@@ -92,4 +92,21 @@ const updateUser = async (req, res) => {
   }
 };
 
- module.exports = {register, login, read, updateUser}
+const resetPass = async(req, res)=>{
+  const{resetLink, newPass} = req.body;
+  if(resetLink){
+    jwt.verify(resetLink, function(err, decodeData){
+      if(err){
+        return res.status(400).json({
+          error:'Incorrect Token'
+        })
+      }
+      User.findOne({resetLink})
+    })
+  }else{
+    return res.status(400).send("Email not existed");
+    
+  }
+}
+
+ module.exports = {resetPass, register, login, read, updateUser}

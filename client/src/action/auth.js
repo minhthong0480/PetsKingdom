@@ -69,4 +69,14 @@ export const updateUser = async (token, data, userId) =>
   );
 
 export const forgot = async (email) =>
-  await axios.post(`${process.env.REACT_APP_API}/forgot-password`, {email});
+  await axios.post(`${process.env.REACT_APP_API}/forgot-password`, { email });
+
+export const reset = async (data) =>
+  await axios.put(`${process.env.REACT_APP_API}/reset-password`, data);
+
+  export const readResetUser = async ( token) =>
+  await axios.get(`${process.env.REACT_APP_API}/reset-password/${token}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });

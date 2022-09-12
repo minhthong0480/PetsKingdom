@@ -17,7 +17,7 @@ function ForgotPassword() {
     try {
       let res = await forgot(email)
       console.log("Email sent", res);
-      // toast.success(`New Booking Added`)
+      toast.success(`Email Sent`)
       }
     catch (error) {
       console.log(error);

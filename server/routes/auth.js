@@ -9,6 +9,7 @@ router.post('/register', register)
 router.post('/login', login)
 router.get("/user/:userId", read);
 router.put("/user/update-user/:userId", verifiedToken, formidable(), updateUser);
+router.put("/reset-password", formidable(), updateUser);
 
 
   module.exports = router
