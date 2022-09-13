@@ -24,7 +24,7 @@ const userBookings = async (req, res) => {
     .limit(24)
     .select("-image.data")
     .populate("postedBy", "_id name")
-    .populate("pets", "petname")
+    .populate("pets", "petname image")
     .exec();
   //console.log(all)
   res.json(bookings);
@@ -75,7 +75,8 @@ const disapprovedBooking = async (req, res) => {
 const readBooking = async (req, res) => {
   let singlebooking = await Booking.findById(req.params.bookingId)
     .select("-image.data")
-    // .populate("postedBy", "_id name")
+    .populate("postedBy", "_id name")
+    .populate("pets", "_id petname image type age breed ownername")
     .exec();
   console.log("SINGLE BOOKING", singlebooking);
   res.json(singlebooking);

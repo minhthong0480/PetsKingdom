@@ -11,7 +11,7 @@ const petSchema = new Schema(
 
     ownername:{
       type: String,
-      required: "owner name is required",
+      // required: "owner name is required",
     },
 
     petname: {
@@ -50,6 +50,4 @@ const petSchema = new Schema(
   { timestamps: true }
 );
 
-const petModel = mongoose.model("Pet", petSchema);
-
-module.exports = petModel;
+module.exports = mongoose.model("Pet", petSchema);;

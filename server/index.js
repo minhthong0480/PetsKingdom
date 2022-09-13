@@ -11,7 +11,7 @@ const petRoute = require("./routes/pet");
 const staffRoute = require("./routes/staff");
 const forgotRoute = require("./routes/forgotPass");
 const bookingRoute = require("./routes/booking")
-const resetRoute = require("./routes/forgotPass")
+const resetRoute = require("./routes/auth")
 
 dotenv.config();
 

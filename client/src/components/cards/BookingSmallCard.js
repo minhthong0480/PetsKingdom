@@ -45,7 +45,7 @@ const BookingSmallCard = ({
     }
   };
 
-  // console.log(h.pets)
+  console.log(h.pets)
   // console.log(h.);
   return (
     <Fragment>

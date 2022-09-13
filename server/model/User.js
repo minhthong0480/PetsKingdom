@@ -18,6 +18,11 @@ const userSchema = new mongoose.Schema({
     isStaff: {
         type: Boolean,
         default: false
+    },
+
+    resetLink:{
+        type: String,
+        default:''
     }
     
     // date: {

@@ -1,20 +1,20 @@
 const nodeMailer = require('nodemailer');
-const mailConfig = require('./model/Mail');
 require('dotenv/config');
 
 exports.sendMail = (to, subject, htmlContent) => {
     const transport = nodeMailer.createTransport({
-        host: mailConfig.HOST,
-        port: mailConfig.PORT,
+        host: process.env.HOST,
+        port: process.env.PORT,
         secure: false,
+        service: "gmail",
         auth: {
-            user: mailConfig.USERNAME,
-            pass: mailConfig.PASSWORD,
+            user: process.env.MAIL_USERNAME,
+            pass: process.env.MAIL_PASSWORD,
         }
     })
 
     const options = {
-        from: mailConfig.FROM_ADDRESS,
+        from: process.env.MAIL_USERNAME,
         to: to,
         subject: subject,
         html: htmlContent

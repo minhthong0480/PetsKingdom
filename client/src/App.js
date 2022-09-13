@@ -23,6 +23,7 @@ import "react-toastify/dist/ReactToastify.css";
 import PrivateRoute from "./components/PrivateRoute";
 import Redirect from "./components/Redirect";
 import StaffPet from "./staff/StaffPet";
+import ResetPass from "./components/ResetPass";
 
 function App() {
   return (
@@ -36,7 +37,7 @@ function App() {
         <Route exact path="/myaccount" element={<MyAccount />} />
         <Route exact path="/register" element={<Register />} />
         <Route exact path="/forgot-password" element={<ForgotPassword />} />
-        {/* <Route exact path="/reset-password" element={<ForgotPassword />} /> */}
+        <Route exact path="/reset-password/:token" element={<ResetPass />} />
           <Route exact path="/user/update-user/:userId" element={<MyAccount />} />
 
         {/* code for private route */}
