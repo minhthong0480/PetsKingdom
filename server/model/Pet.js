@@ -11,7 +11,7 @@ const petSchema = new Schema(
 
     ownername:{
       type: String,
-      required: "owner name is required",
+      // required: "owner name is required",
     },
 
     petname: {

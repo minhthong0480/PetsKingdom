@@ -48,6 +48,7 @@ const PetCreateForm = (props) => {
             placeholder="Owner Name"
             className="form-control m-2"
             values={ownername}
+            hidden
           />
 
           <input
