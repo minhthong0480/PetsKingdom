@@ -13,7 +13,7 @@ const ResetPassForm = (props) => {
     <form onSubmit={handleSubmit} className="mt-3">
       
 
-      <div className="form-group mb-3">
+      {/* <div className="form-group mb-3">
         <label className="form-label">Email</label>
         <input
           type="email"
@@ -24,7 +24,7 @@ const ResetPassForm = (props) => {
           onChange={handleChange}
           disabled
         />
-      </div>
+      </div> */}
 
       <div className="form-group mb-3 mt-3">
         <label className="form-label">Password</label>

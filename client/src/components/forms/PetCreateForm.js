@@ -37,7 +37,7 @@ const PetCreateForm = (props) => {
               name="image"
               onChange={handleImageChange}
               accept="image/*"
-              
+              hidden
             />
           </label>
 
@@ -48,7 +48,7 @@ const PetCreateForm = (props) => {
             placeholder="Owner Name"
             className="form-control m-2"
             values={ownername}
-            hidden
+            // hidden
           />
 
           <input
